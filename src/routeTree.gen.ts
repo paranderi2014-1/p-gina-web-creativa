@@ -10,33 +10,128 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as CalculadorasRouteImport } from './routes/calculadoras'
+import { Route as ContratosRouteImport } from './routes/contratos'
+import { Route as FuentesRouteImport } from './routes/fuentes'
+import { Route as JurisprudenciaRouteImport } from './routes/jurisprudencia'
+import { Route as ModulosRouteImport } from './routes/modulos'
+import { Route as PreciosRouteImport } from './routes/precios'
+import { Route as VigilanciaRouteImport } from './routes/vigilancia'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const CalculadorasRoute = CalculadorasRouteImport.update({
+  id: '/calculadoras',
+  path: '/calculadoras',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ContratosRoute = ContratosRouteImport.update({
+  id: '/contratos',
+  path: '/contratos',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FuentesRoute = FuentesRouteImport.update({
+  id: '/fuentes',
+  path: '/fuentes',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const JurisprudenciaRoute = JurisprudenciaRouteImport.update({
+  id: '/jurisprudencia',
+  path: '/jurisprudencia',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ModulosRoute = ModulosRouteImport.update({
+  id: '/modulos',
+  path: '/modulos',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PreciosRoute = PreciosRouteImport.update({
+  id: '/precios',
+  path: '/precios',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const VigilanciaRoute = VigilanciaRouteImport.update({
+  id: '/vigilancia',
+  path: '/vigilancia',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/calculadoras': typeof CalculadorasRoute
+  '/contratos': typeof ContratosRoute
+  '/fuentes': typeof FuentesRoute
+  '/jurisprudencia': typeof JurisprudenciaRoute
+  '/modulos': typeof ModulosRoute
+  '/precios': typeof PreciosRoute
+  '/vigilancia': typeof VigilanciaRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/calculadoras': typeof CalculadorasRoute
+  '/contratos': typeof ContratosRoute
+  '/fuentes': typeof FuentesRoute
+  '/jurisprudencia': typeof JurisprudenciaRoute
+  '/modulos': typeof ModulosRoute
+  '/precios': typeof PreciosRoute
+  '/vigilancia': typeof VigilanciaRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/calculadoras': typeof CalculadorasRoute
+  '/contratos': typeof ContratosRoute
+  '/fuentes': typeof FuentesRoute
+  '/jurisprudencia': typeof JurisprudenciaRoute
+  '/modulos': typeof ModulosRoute
+  '/precios': typeof PreciosRoute
+  '/vigilancia': typeof VigilanciaRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/calculadoras'
+    | '/contratos'
+    | '/fuentes'
+    | '/jurisprudencia'
+    | '/modulos'
+    | '/precios'
+    | '/vigilancia'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/calculadoras'
+    | '/contratos'
+    | '/fuentes'
+    | '/jurisprudencia'
+    | '/modulos'
+    | '/precios'
+    | '/vigilancia'
+  id:
+    | '__root__'
+    | '/'
+    | '/calculadoras'
+    | '/contratos'
+    | '/fuentes'
+    | '/jurisprudencia'
+    | '/modulos'
+    | '/precios'
+    | '/vigilancia'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  CalculadorasRoute: typeof CalculadorasRoute
+  ContratosRoute: typeof ContratosRoute
+  FuentesRoute: typeof FuentesRoute
+  JurisprudenciaRoute: typeof JurisprudenciaRoute
+  ModulosRoute: typeof ModulosRoute
+  PreciosRoute: typeof PreciosRoute
+  VigilanciaRoute: typeof VigilanciaRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +143,67 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/calculadoras': {
+      id: '/calculadoras'
+      path: '/calculadoras'
+      fullPath: '/calculadoras'
+      preLoaderRoute: typeof CalculadorasRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/contratos': {
+      id: '/contratos'
+      path: '/contratos'
+      fullPath: '/contratos'
+      preLoaderRoute: typeof ContratosRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/fuentes': {
+      id: '/fuentes'
+      path: '/fuentes'
+      fullPath: '/fuentes'
+      preLoaderRoute: typeof FuentesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/jurisprudencia': {
+      id: '/jurisprudencia'
+      path: '/jurisprudencia'
+      fullPath: '/jurisprudencia'
+      preLoaderRoute: typeof JurisprudenciaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/modulos': {
+      id: '/modulos'
+      path: '/modulos'
+      fullPath: '/modulos'
+      preLoaderRoute: typeof ModulosRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/precios': {
+      id: '/precios'
+      path: '/precios'
+      fullPath: '/precios'
+      preLoaderRoute: typeof PreciosRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/vigilancia': {
+      id: '/vigilancia'
+      path: '/vigilancia'
+      fullPath: '/vigilancia'
+      preLoaderRoute: typeof VigilanciaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  CalculadorasRoute: CalculadorasRoute,
+  ContratosRoute: ContratosRoute,
+  FuentesRoute: FuentesRoute,
+  JurisprudenciaRoute: JurisprudenciaRoute,
+  ModulosRoute: ModulosRoute,
+  PreciosRoute: PreciosRoute,
+  VigilanciaRoute: VigilanciaRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

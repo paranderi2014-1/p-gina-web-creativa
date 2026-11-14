@@ -28,3 +28,10 @@ use the editor.
   own key and store it in Secrets.
 - **Secrets.** Lovable manages them. Do not put secret values in the repo.
 <!-- LOVABLE:END -->
+
+## Project rules
+
+- LEX IA PY site: each section (Inicio, Módulos, Calculadoras, Jurisprudencia, Vigilancia, Contratos, Precios, Fuentes) is its own route; the selected module lives in the `/modulos?m=N` search param so module links are shareable.
+- Legal/calculation rules (honorarios, liquidación, intereses, multas, predicción, anonimización) live as pure functions in `src/lib/lexia-calc.ts` with tests in `lexia-calc.test.ts`; demos only render them, so rules change in one place.
+- Site content (modules, official sources, demo fallos/documentos, FAQ) lives in `src/lib/lexia-data.ts`; pages read from it instead of hardcoding copy.
+- The CRM demo stores added clients in the visitor's browser only (no backend) because the site is a public demo without accounts.
