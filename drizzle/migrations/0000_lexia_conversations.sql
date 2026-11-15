@@ -1,0 +1,11 @@
+CREATE TABLE public.lexia_threads (id uuid PRIMARY KEY DEFAULT gen_random_uuid(), user_id uuid NOT NULL, title text NOT NULL DEFAULT 'Nueva consulta', created_at timestamptz NOT NULL DEFAULT now());
+GRANT SELECT, INSERT, UPDATE, DELETE ON public.lexia_threads TO authenticated;
+GRANT ALL ON public.lexia_threads TO service_role;
+ALTER TABLE public.lexia_threads ENABLE ROW LEVEL SECURITY;
+CREATE POLICY own_threads ON public.lexia_threads FOR ALL TO authenticated USING (user_id = auth.uid()) WITH CHECK (user_id = auth.uid());
+CREATE TABLE public.lexia_messages (id uuid PRIMARY KEY DEFAULT gen_random_uuid(), thread_id uuid NOT NULL REFERENCES public.lexia_threads(id) ON DELETE CASCADE, role text NOT NULL CHECK (role IN ('user','assistant')), parts jsonb NOT NULL DEFAULT '[]', created_at timestamptz NOT NULL DEFAULT now());
+GRANT SELECT, INSERT, DELETE ON public.lexia_messages TO authenticated;
+GRANT ALL ON public.lexia_messages TO service_role;
+ALTER TABLE public.lexia_messages ENABLE ROW LEVEL SECURITY;
+CREATE POLICY own_messages ON public.lexia_messages FOR ALL TO authenticated USING (EXISTS (SELECT 1 FROM public.lexia_threads t WHERE t.id = thread_id AND t.user_id = auth.uid())) WITH CHECK (EXISTS (SELECT 1 FROM public.lexia_threads t WHERE t.id = thread_id AND t.user_id = auth.uid()));
+CREATE INDEX lexia_messages_thread ON public.lexia_messages(thread_id,created_at);

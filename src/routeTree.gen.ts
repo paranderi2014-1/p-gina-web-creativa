@@ -17,6 +17,7 @@ import { Route as JurisprudenciaRouteImport } from './routes/jurisprudencia'
 import { Route as ModulosRouteImport } from './routes/modulos'
 import { Route as PreciosRouteImport } from './routes/precios'
 import { Route as VigilanciaRouteImport } from './routes/vigilancia'
+import { Route as ApiLexiaRouteImport } from './routes/api/lexia'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -58,6 +59,11 @@ const VigilanciaRoute = VigilanciaRouteImport.update({
   path: '/vigilancia',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ApiLexiaRoute = ApiLexiaRouteImport.update({
+  id: '/api/lexia',
+  path: '/api/lexia',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -68,6 +74,7 @@ export interface FileRoutesByFullPath {
   '/modulos': typeof ModulosRoute
   '/precios': typeof PreciosRoute
   '/vigilancia': typeof VigilanciaRoute
+  '/api/lexia': typeof ApiLexiaRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -78,6 +85,7 @@ export interface FileRoutesByTo {
   '/modulos': typeof ModulosRoute
   '/precios': typeof PreciosRoute
   '/vigilancia': typeof VigilanciaRoute
+  '/api/lexia': typeof ApiLexiaRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -89,6 +97,7 @@ export interface FileRoutesById {
   '/modulos': typeof ModulosRoute
   '/precios': typeof PreciosRoute
   '/vigilancia': typeof VigilanciaRoute
+  '/api/lexia': typeof ApiLexiaRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -101,6 +110,7 @@ export interface FileRouteTypes {
     | '/modulos'
     | '/precios'
     | '/vigilancia'
+    | '/api/lexia'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -111,6 +121,7 @@ export interface FileRouteTypes {
     | '/modulos'
     | '/precios'
     | '/vigilancia'
+    | '/api/lexia'
   id:
     | '__root__'
     | '/'
@@ -121,6 +132,7 @@ export interface FileRouteTypes {
     | '/modulos'
     | '/precios'
     | '/vigilancia'
+    | '/api/lexia'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -132,6 +144,7 @@ export interface RootRouteChildren {
   ModulosRoute: typeof ModulosRoute
   PreciosRoute: typeof PreciosRoute
   VigilanciaRoute: typeof VigilanciaRoute
+  ApiLexiaRoute: typeof ApiLexiaRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -192,6 +205,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof VigilanciaRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/api/lexia': {
+      id: '/api/lexia'
+      path: '/api/lexia'
+      fullPath: '/api/lexia'
+      preLoaderRoute: typeof ApiLexiaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -204,6 +224,7 @@ const rootRouteChildren: RootRouteChildren = {
   ModulosRoute: ModulosRoute,
   PreciosRoute: PreciosRoute,
   VigilanciaRoute: VigilanciaRoute,
+  ApiLexiaRoute: ApiLexiaRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
