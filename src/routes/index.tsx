@@ -4,6 +4,10 @@ import { ArrowRight, CheckCircle2, Scale, Search } from "lucide-react";
 import { JORNAL_MINIMO, formatGs } from "@/lib/lexia-calc";
 import { LEGISLACION_CITADA, MODULES } from "@/lib/lexia-data";
 import { pageHead } from "@/lib/seo";
+import { LexiaChat } from "@/components/lexia/LexiaChat";
+import { HonorariosDemo } from "@/components/lexia/demos/HonorariosDemo";
+import { EXTRA_SERVICES } from "@/lib/lexia-services";
+import { Button } from "@/components/ui/button";
 import { ModuleGrid } from "@/components/lexia/ModuleGrid";
 
 export const Route = createFileRoute("/")({
@@ -31,65 +35,9 @@ function Inicio() {
 
   return (
     <>
-      <section className="grid items-center gap-6 pt-6 sm:pt-10 lg:grid-cols-[1.15fr_.85fr]">
-        <div>
-          <span className="chip border border-gold-soft !bg-card">Asunción, Paraguay • www.lexiapy.com</span>
-          <h1 className="font-display mt-4 text-[clamp(38px,7vw,68px)] font-bold leading-[.95] text-navy">
-            Tecnología justa
-            <br />
-            para el derecho
-            <br />
-            <span className="text-kicker">paraguayo.</span>
-          </h1>
-          <p className="mt-4 max-w-xl text-lg leading-relaxed text-muted-foreground">
-            12 Módulos en funcionamiento. Precisión, confidencialidad y control, con supervisión humana primero.
-          </p>
-          <div className="mt-6 flex flex-wrap gap-3">
-            <Link to="/precios" className="btn btn-gold">
-              Probar gratis <ArrowRight size={16} />
-            </Link>
-            <Link to="/modulos" className="btn btn-navy">
-              Ver los 12 Módulos
-            </Link>
-          </div>
-          <div className="mt-6 flex flex-wrap gap-2">
-            <span className="chip">✓ Supervisión humana primero</span>
-            <span className="chip">✓ Fuentes verificables</span>
-            <span className="chip">✓ Ley N° 7593/2025</span>
-          </div>
-        </div>
-
-        <div className="card !border-navy bg-navy p-5 text-navy-foreground">
-          <p className="text-[12px] font-bold tracking-widest text-gold">ESTADO EN VIVO — DEMOSTRACIÓN</p>
-          <div className="mt-4 grid grid-cols-3 gap-2 text-center">
-            {[
-              ["12", "Módulos en funcionamiento"],
-              ["+3.000", "Fallos en la base"],
-              ["3×", "Monitoreo CSJ al día"],
-            ].map(([k, l]) => (
-              <div key={l} className="min-w-0">
-                <p className="kpi">{k}</p>
-                <p className="mt-1 break-words text-[11px] leading-tight opacity-80">{l}</p>
-              </div>
-            ))}
-          </div>
-          <div className="mt-5 rounded-xl bg-navy-foreground/10 p-4">
-            <p className="flex gap-2 font-bold">
-              <Scale size={18} /> Honorarios, hoy
-            </p>
-            <p className="small mt-1 opacity-90">
-              Jornal mínimo vigente: <b>{formatGs(JORNAL_MINIMO)}</b> • Res. MTESS N° 670/2026, desde el 01/01/2026.
-            </p>
-            <Link to="/calculadoras" className="btn btn-gold btn-sm mt-3">
-              Calcular ahora
-            </Link>
-          </div>
-          <p className="small mt-3 opacity-75">
-            Todos los resultados de esta vista previa son de demostración y se verifican en la fuente oficial
-            correspondiente.
-          </p>
-        </div>
-      </section>
+      <div className="pt-5"><LexiaChat /></div>
+      <section className="mt-8" aria-label="Honorarios LEX IA en vivo"><HonorariosDemo /></section>
+      <section className="mt-8"><p className="text-xs font-bold uppercase text-kicker">Acceso rápido · LEX IA PY</p><h2 className="font-display mt-2 text-2xl font-bold text-navy">Tu espacio jurídico, en un solo lugar.</h2><p className="mt-2 text-sm text-muted-foreground">Tecnología justa para el derecho paraguayo. 12 módulos en funcionamiento, con supervisión humana primero.</p><div className="mt-4 grid gap-3 sm:grid-cols-2 xl:grid-cols-4">{[{to:"/asistente",label:"Consultar a Lexia",description:"Investigación jurídica y fuentes oficiales"},{to:"/documentos",label:"Documentos LEX IA",description:"Contratos, notas y escritos guiados"},{to:"/jurisprudencia",label:"Legislación LEX IA",description:"Normas y jurisprudencia paraguayas"},{to:"/calculadoras",label:"Calculadoras LEX IA",description:"Honorarios, liquidación e intereses"}].map(item => <Button key={item.to} asChild variant="outline" className="h-auto justify-start whitespace-normal p-4"><Link to={item.to}><span><b className="block">{item.label}</b><span className="mt-1 block text-xs font-normal text-muted-foreground">{item.description}</span></span><ArrowRight className="ml-auto shrink-0" /></Link></Button>)}</div><div className="mt-4 flex flex-wrap gap-2"><span className="chip">✓ Supervisión humana primero</span><span className="chip">✓ Fuentes verificables</span><span className="chip">✓ Ley N° 7593/2025</span></div></section>
 
       <section className="mt-8">
         <div className="relative">
@@ -116,7 +64,7 @@ function Inicio() {
       </section>
 
       <section className="mt-10 grid gap-4 lg:grid-cols-2">
-        <div className="card p-5">
+        <div className="border-t pt-5">
           <h2 className="text-xl font-bold">Protocolo LEX IA</h2>
           <ul className="small mt-3 space-y-2">
             {PROTOCOLO.map((p) => (
@@ -127,7 +75,7 @@ function Inicio() {
             ))}
           </ul>
         </div>
-        <div className="card p-5">
+        <div className="border-t pt-5">
           <h2 className="text-xl font-bold">Legislación citada en toda la web</h2>
           <p className="small mt-3 leading-relaxed text-muted-foreground">{LEGISLACION_CITADA}</p>
           <Link to="/fuentes" className="btn btn-line mt-4">
@@ -135,6 +83,7 @@ function Inicio() {
           </Link>
         </div>
       </section>
+      <section className="mt-10"><h2 className="font-display text-2xl font-bold text-navy">Servicios y entorno profesional LEX IA</h2><div className="mt-4 grid gap-3 sm:grid-cols-2">{EXTRA_SERVICES.map(service => <Link key={service.slug} to={`/${service.slug}`} className="rounded-md border bg-card p-4"><h3 className="font-bold">{service.title}</h3><p className="mt-2 text-xs leading-relaxed text-muted-foreground">{service.description}</p></Link>)}</div><p className="mt-5 border-l-2 border-gold pl-4 text-xs leading-relaxed text-muted-foreground">Las demostraciones anteriores se conservan. La base de 8 fallos es ilustrativa, no una base real de +3.000 fallos. El monitoreo CSJ de 3 consultas diarias sigue siendo demostrativo; no hay conexión automática ni credenciales CSJ almacenadas. Voz, firma, Marketplace y API requieren sus servicios externos.</p></section>
     </>
   );
 }

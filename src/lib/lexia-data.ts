@@ -126,7 +126,7 @@ export const MODULES: LexModule[] = [
       "2.4 Búsqueda por N° de A. y S.",
       "2.5 Filtros: materia, tribunal, sala, año, magistrado",
       "2.6 Visor PDF del fallo",
-      "2.7 Chat Kai",
+      "2.7 Chat Lexia — investigación oficial",
       "2.8 Contar el caso en lenguaje claro",
       "2.9 Respuesta con fuente trazable",
       "2.10 Distinción criterio vs. argumentos",
@@ -167,7 +167,7 @@ export const MODULES: LexModule[] = [
     title: "Contratos",
     short: "Wizards laborales y de servicios con 92 cláusulas y validación vigente.",
     icon: "file-text",
-    legal: "Ley N° 213/93 Código del Trabajo. Ley N° 6380/19 Código Civil Paraguayo.",
+    legal: "Ley N° 213/93 Código del Trabajo. Ley N° 1183/85 Código Civil Paraguayo.",
     source: 7,
     functions: [
       "4.1 Wizard laboral — 7 pasos",
@@ -271,7 +271,7 @@ export const MODULES: LexModule[] = [
     title: "Escritos",
     short: "Escritos, dictámenes y resoluciones automatizados desde los datos del caso.",
     icon: "file-check",
-    legal: "Código Procesal Civil. Ley N° 6380/19.",
+    legal: "Ley N° 1337/88 Código Procesal Civil. Ley N° 1183/85 Código Civil. Ley N° 6380/19 para asuntos tributarios.",
     source: 5,
     functions: [
       "9.4 Escritos automatizados",
@@ -440,7 +440,7 @@ export const TIPOS_CONTRATO = [
 ];
 
 export const LEGISLACION_CITADA =
-  "Constitución Nacional • Ley N° 1376/88, mod. Ley N° 4590/12, Arts. 25, 32, 33, 44 y sgtes. • Ley N° 213/93, mod. Ley N° 496/94, Arts. 84, 205–207, 218, 219 • Ley N° 6380/19 Código Civil • Código Procesal Civil, Arts. 439 a 466 • Decreto N° 1989/24 • Res. MTESS N° 670/2026 • Ley N° 7593/2025 • Acordada CSJ N° 1798/25 • Ley N° 1160/97 Código Penal.";
+  "Constitución Nacional • Ley N° 1376/88, mod. Ley N° 4590/12, Arts. 25, 32, 33, 44 y sgtes. • Ley N° 213/93, mod. Ley N° 496/94, Arts. 84, 205–207, 218, 219 • Ley N° 1183/85 Código Civil • Ley N° 6380/19 tributaria • Ley N° 1337/88 Código Procesal Civil, Arts. 439 a 466 • Decreto N° 1989/24 • Res. MTESS N° 670/2026 • Ley N° 7593/2025 • Acordada CSJ N° 1798/25 • Ley N° 1160/97 Código Penal.";
 
 export const FAQ: [string, string][] = [
   [

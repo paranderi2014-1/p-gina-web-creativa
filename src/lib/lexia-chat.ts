@@ -11,7 +11,9 @@ export function isOfficialUrl(value: string) {
 export const chatPartsSchema = z.array(z.union([
   z.object({ type: z.literal("text"), text: z.string() }),
   z.object({ type: z.literal("source-url"), sourceId: z.string(), url: z.string(), title: z.string().optional() }),
-  z.object({ type: z.literal("dynamic-tool"), toolName: z.string(), toolCallId: z.string(), state: z.enum(["input-available", "output-available", "output-error"]), input: z.unknown().optional(), output: z.unknown().optional(), errorText: z.string().optional() }),
+  z.object({ type: z.literal("dynamic-tool"), toolName: z.string(), toolCallId: z.string(), state: z.literal("input-available"), input: z.object({ fuentes: z.array(z.string()) }) }),
+  z.object({ type: z.literal("dynamic-tool"), toolName: z.string(), toolCallId: z.string(), state: z.literal("output-available"), input: z.object({ fuentes: z.array(z.string()) }), output: z.object({ fuentes: z.array(z.string()) }) }),
+  z.object({ type: z.literal("dynamic-tool"), toolName: z.string(), toolCallId: z.string(), state: z.literal("output-error"), input: z.object({ fuentes: z.array(z.string()) }), errorText: z.string() }),
 ]));
 export type LexiaMessage = UIMessage;
 export function textOf(parts: unknown) {

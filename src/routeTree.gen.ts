@@ -10,18 +10,55 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AuthenticatedRouteRouteImport } from './routes/_authenticated/route'
+import { Route as AcademiaRouteImport } from './routes/academia'
+import { Route as AsistenteRouteImport } from './routes/asistente'
+import { Route as AuthRouteImport } from './routes/auth'
+import { Route as AvanzadasRouteImport } from './routes/avanzadas'
 import { Route as CalculadorasRouteImport } from './routes/calculadoras'
+import { Route as ContactoRouteImport } from './routes/contacto'
 import { Route as ContratosRouteImport } from './routes/contratos'
+import { Route as DocumentosRouteImport } from './routes/documentos'
+import { Route as ExpedientesRouteImport } from './routes/expedientes'
 import { Route as FuentesRouteImport } from './routes/fuentes'
+import { Route as GestionRouteImport } from './routes/gestion'
 import { Route as JurisprudenciaRouteImport } from './routes/jurisprudencia'
+import { Route as LexiaLiveRouteImport } from './routes/lexia-live'
+import { Route as MarketplaceRouteImport } from './routes/marketplace'
 import { Route as ModulosRouteImport } from './routes/modulos'
 import { Route as PreciosRouteImport } from './routes/precios'
+import { Route as ResetPasswordRouteImport } from './routes/reset-password'
 import { Route as VigilanciaRouteImport } from './routes/vigilancia'
 import { Route as ApiLexiaRouteImport } from './routes/api/lexia'
+import { Route as AuthenticatedAsistenteThreadIdRouteImport } from './routes/_authenticated/asistente.$threadId'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AuthenticatedRouteRoute = AuthenticatedRouteRouteImport.update({
+  id: '/_authenticated',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AcademiaRoute = AcademiaRouteImport.update({
+  id: '/academia',
+  path: '/academia',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AsistenteRoute = AsistenteRouteImport.update({
+  id: '/asistente',
+  path: '/asistente',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AuthRoute = AuthRouteImport.update({
+  id: '/auth',
+  path: '/auth',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AvanzadasRoute = AvanzadasRouteImport.update({
+  id: '/avanzadas',
+  path: '/avanzadas',
   getParentRoute: () => rootRouteImport,
 } as any)
 const CalculadorasRoute = CalculadorasRouteImport.update({
@@ -29,9 +66,24 @@ const CalculadorasRoute = CalculadorasRouteImport.update({
   path: '/calculadoras',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ContactoRoute = ContactoRouteImport.update({
+  id: '/contacto',
+  path: '/contacto',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ContratosRoute = ContratosRouteImport.update({
   id: '/contratos',
   path: '/contratos',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DocumentosRoute = DocumentosRouteImport.update({
+  id: '/documentos',
+  path: '/documentos',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ExpedientesRoute = ExpedientesRouteImport.update({
+  id: '/expedientes',
+  path: '/expedientes',
   getParentRoute: () => rootRouteImport,
 } as any)
 const FuentesRoute = FuentesRouteImport.update({
@@ -39,9 +91,24 @@ const FuentesRoute = FuentesRouteImport.update({
   path: '/fuentes',
   getParentRoute: () => rootRouteImport,
 } as any)
+const GestionRoute = GestionRouteImport.update({
+  id: '/gestion',
+  path: '/gestion',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const JurisprudenciaRoute = JurisprudenciaRouteImport.update({
   id: '/jurisprudencia',
   path: '/jurisprudencia',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LexiaLiveRoute = LexiaLiveRouteImport.update({
+  id: '/lexia-live',
+  path: '/lexia-live',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MarketplaceRoute = MarketplaceRouteImport.update({
+  id: '/marketplace',
+  path: '/marketplace',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ModulosRoute = ModulosRouteImport.update({
@@ -54,6 +121,11 @@ const PreciosRoute = PreciosRouteImport.update({
   path: '/precios',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ResetPasswordRoute = ResetPasswordRouteImport.update({
+  id: '/reset-password',
+  path: '/reset-password',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const VigilanciaRoute = VigilanciaRouteImport.update({
   id: '/vigilancia',
   path: '/vigilancia',
@@ -64,85 +136,177 @@ const ApiLexiaRoute = ApiLexiaRouteImport.update({
   path: '/api/lexia',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AuthenticatedAsistenteThreadIdRoute =
+  AuthenticatedAsistenteThreadIdRouteImport.update({
+    id: '/asistente/$threadId',
+    path: '/asistente/$threadId',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/academia': typeof AcademiaRoute
+  '/asistente': typeof AsistenteRoute
+  '/auth': typeof AuthRoute
+  '/avanzadas': typeof AvanzadasRoute
   '/calculadoras': typeof CalculadorasRoute
+  '/contacto': typeof ContactoRoute
   '/contratos': typeof ContratosRoute
+  '/documentos': typeof DocumentosRoute
+  '/expedientes': typeof ExpedientesRoute
   '/fuentes': typeof FuentesRoute
+  '/gestion': typeof GestionRoute
   '/jurisprudencia': typeof JurisprudenciaRoute
+  '/lexia-live': typeof LexiaLiveRoute
+  '/marketplace': typeof MarketplaceRoute
   '/modulos': typeof ModulosRoute
   '/precios': typeof PreciosRoute
+  '/reset-password': typeof ResetPasswordRoute
   '/vigilancia': typeof VigilanciaRoute
   '/api/lexia': typeof ApiLexiaRoute
+  '/asistente/$threadId': typeof AuthenticatedAsistenteThreadIdRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/academia': typeof AcademiaRoute
+  '/asistente': typeof AsistenteRoute
+  '/auth': typeof AuthRoute
+  '/avanzadas': typeof AvanzadasRoute
   '/calculadoras': typeof CalculadorasRoute
+  '/contacto': typeof ContactoRoute
   '/contratos': typeof ContratosRoute
+  '/documentos': typeof DocumentosRoute
+  '/expedientes': typeof ExpedientesRoute
   '/fuentes': typeof FuentesRoute
+  '/gestion': typeof GestionRoute
   '/jurisprudencia': typeof JurisprudenciaRoute
+  '/lexia-live': typeof LexiaLiveRoute
+  '/marketplace': typeof MarketplaceRoute
   '/modulos': typeof ModulosRoute
   '/precios': typeof PreciosRoute
+  '/reset-password': typeof ResetPasswordRoute
   '/vigilancia': typeof VigilanciaRoute
   '/api/lexia': typeof ApiLexiaRoute
+  '/asistente/$threadId': typeof AuthenticatedAsistenteThreadIdRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/_authenticated': typeof AuthenticatedRouteRouteWithChildren
+  '/academia': typeof AcademiaRoute
+  '/asistente': typeof AsistenteRoute
+  '/auth': typeof AuthRoute
+  '/avanzadas': typeof AvanzadasRoute
   '/calculadoras': typeof CalculadorasRoute
+  '/contacto': typeof ContactoRoute
   '/contratos': typeof ContratosRoute
+  '/documentos': typeof DocumentosRoute
+  '/expedientes': typeof ExpedientesRoute
   '/fuentes': typeof FuentesRoute
+  '/gestion': typeof GestionRoute
   '/jurisprudencia': typeof JurisprudenciaRoute
+  '/lexia-live': typeof LexiaLiveRoute
+  '/marketplace': typeof MarketplaceRoute
   '/modulos': typeof ModulosRoute
   '/precios': typeof PreciosRoute
+  '/reset-password': typeof ResetPasswordRoute
   '/vigilancia': typeof VigilanciaRoute
   '/api/lexia': typeof ApiLexiaRoute
+  '/_authenticated/asistente/$threadId': typeof AuthenticatedAsistenteThreadIdRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/academia'
+    | '/asistente'
+    | '/auth'
+    | '/avanzadas'
     | '/calculadoras'
+    | '/contacto'
     | '/contratos'
+    | '/documentos'
+    | '/expedientes'
     | '/fuentes'
+    | '/gestion'
     | '/jurisprudencia'
+    | '/lexia-live'
+    | '/marketplace'
     | '/modulos'
     | '/precios'
+    | '/reset-password'
     | '/vigilancia'
     | '/api/lexia'
+    | '/asistente/$threadId'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/academia'
+    | '/asistente'
+    | '/auth'
+    | '/avanzadas'
     | '/calculadoras'
+    | '/contacto'
     | '/contratos'
+    | '/documentos'
+    | '/expedientes'
     | '/fuentes'
+    | '/gestion'
     | '/jurisprudencia'
+    | '/lexia-live'
+    | '/marketplace'
     | '/modulos'
     | '/precios'
+    | '/reset-password'
     | '/vigilancia'
     | '/api/lexia'
+    | '/asistente/$threadId'
   id:
     | '__root__'
     | '/'
+    | '/_authenticated'
+    | '/academia'
+    | '/asistente'
+    | '/auth'
+    | '/avanzadas'
     | '/calculadoras'
+    | '/contacto'
     | '/contratos'
+    | '/documentos'
+    | '/expedientes'
     | '/fuentes'
+    | '/gestion'
     | '/jurisprudencia'
+    | '/lexia-live'
+    | '/marketplace'
     | '/modulos'
     | '/precios'
+    | '/reset-password'
     | '/vigilancia'
     | '/api/lexia'
+    | '/_authenticated/asistente/$threadId'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AuthenticatedRouteRoute: typeof AuthenticatedRouteRouteWithChildren
+  AcademiaRoute: typeof AcademiaRoute
+  AsistenteRoute: typeof AsistenteRoute
+  AuthRoute: typeof AuthRoute
+  AvanzadasRoute: typeof AvanzadasRoute
   CalculadorasRoute: typeof CalculadorasRoute
+  ContactoRoute: typeof ContactoRoute
   ContratosRoute: typeof ContratosRoute
+  DocumentosRoute: typeof DocumentosRoute
+  ExpedientesRoute: typeof ExpedientesRoute
   FuentesRoute: typeof FuentesRoute
+  GestionRoute: typeof GestionRoute
   JurisprudenciaRoute: typeof JurisprudenciaRoute
+  LexiaLiveRoute: typeof LexiaLiveRoute
+  MarketplaceRoute: typeof MarketplaceRoute
   ModulosRoute: typeof ModulosRoute
   PreciosRoute: typeof PreciosRoute
+  ResetPasswordRoute: typeof ResetPasswordRoute
   VigilanciaRoute: typeof VigilanciaRoute
   ApiLexiaRoute: typeof ApiLexiaRoute
 }
@@ -156,11 +320,53 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/_authenticated': {
+      id: '/_authenticated'
+      path: ''
+      fullPath: '/'
+      preLoaderRoute: typeof AuthenticatedRouteRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/academia': {
+      id: '/academia'
+      path: '/academia'
+      fullPath: '/academia'
+      preLoaderRoute: typeof AcademiaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/asistente': {
+      id: '/asistente'
+      path: '/asistente'
+      fullPath: '/asistente'
+      preLoaderRoute: typeof AsistenteRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/auth': {
+      id: '/auth'
+      path: '/auth'
+      fullPath: '/auth'
+      preLoaderRoute: typeof AuthRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/avanzadas': {
+      id: '/avanzadas'
+      path: '/avanzadas'
+      fullPath: '/avanzadas'
+      preLoaderRoute: typeof AvanzadasRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/calculadoras': {
       id: '/calculadoras'
       path: '/calculadoras'
       fullPath: '/calculadoras'
       preLoaderRoute: typeof CalculadorasRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/contacto': {
+      id: '/contacto'
+      path: '/contacto'
+      fullPath: '/contacto'
+      preLoaderRoute: typeof ContactoRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/contratos': {
@@ -170,6 +376,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ContratosRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/documentos': {
+      id: '/documentos'
+      path: '/documentos'
+      fullPath: '/documentos'
+      preLoaderRoute: typeof DocumentosRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/expedientes': {
+      id: '/expedientes'
+      path: '/expedientes'
+      fullPath: '/expedientes'
+      preLoaderRoute: typeof ExpedientesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/fuentes': {
       id: '/fuentes'
       path: '/fuentes'
@@ -177,11 +397,32 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof FuentesRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/gestion': {
+      id: '/gestion'
+      path: '/gestion'
+      fullPath: '/gestion'
+      preLoaderRoute: typeof GestionRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/jurisprudencia': {
       id: '/jurisprudencia'
       path: '/jurisprudencia'
       fullPath: '/jurisprudencia'
       preLoaderRoute: typeof JurisprudenciaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/lexia-live': {
+      id: '/lexia-live'
+      path: '/lexia-live'
+      fullPath: '/lexia-live'
+      preLoaderRoute: typeof LexiaLiveRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/marketplace': {
+      id: '/marketplace'
+      path: '/marketplace'
+      fullPath: '/marketplace'
+      preLoaderRoute: typeof MarketplaceRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/modulos': {
@@ -198,6 +439,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof PreciosRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/reset-password': {
+      id: '/reset-password'
+      path: '/reset-password'
+      fullPath: '/reset-password'
+      preLoaderRoute: typeof ResetPasswordRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/vigilancia': {
       id: '/vigilancia'
       path: '/vigilancia'
@@ -212,17 +460,47 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ApiLexiaRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/_authenticated/asistente/$threadId': {
+      id: '/_authenticated/asistente/$threadId'
+      path: '/asistente/$threadId'
+      fullPath: '/asistente/$threadId'
+      preLoaderRoute: typeof AuthenticatedAsistenteThreadIdRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
   }
 }
 
+interface AuthenticatedRouteRouteChildren {
+  AuthenticatedAsistenteThreadIdRoute: typeof AuthenticatedAsistenteThreadIdRoute
+}
+
+const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
+  AuthenticatedAsistenteThreadIdRoute: AuthenticatedAsistenteThreadIdRoute,
+}
+
+const AuthenticatedRouteRouteWithChildren =
+  AuthenticatedRouteRoute._addFileChildren(AuthenticatedRouteRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AuthenticatedRouteRoute: AuthenticatedRouteRouteWithChildren,
+  AcademiaRoute: AcademiaRoute,
+  AsistenteRoute: AsistenteRoute,
+  AuthRoute: AuthRoute,
+  AvanzadasRoute: AvanzadasRoute,
   CalculadorasRoute: CalculadorasRoute,
+  ContactoRoute: ContactoRoute,
   ContratosRoute: ContratosRoute,
+  DocumentosRoute: DocumentosRoute,
+  ExpedientesRoute: ExpedientesRoute,
   FuentesRoute: FuentesRoute,
+  GestionRoute: GestionRoute,
   JurisprudenciaRoute: JurisprudenciaRoute,
+  LexiaLiveRoute: LexiaLiveRoute,
+  MarketplaceRoute: MarketplaceRoute,
   ModulosRoute: ModulosRoute,
   PreciosRoute: PreciosRoute,
+  ResetPasswordRoute: ResetPasswordRoute,
   VigilanciaRoute: VigilanciaRoute,
   ApiLexiaRoute: ApiLexiaRoute,
 }

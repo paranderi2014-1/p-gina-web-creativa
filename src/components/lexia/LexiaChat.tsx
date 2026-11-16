@@ -52,7 +52,11 @@ export function LexiaChat({ threadId, initialMessages = [] }: { threadId?: strin
     let text = "";
     const sources = new Map<string, string>();
     let toolState: "input-available" | "output-available" | "output-error" = "input-available";
-    const update = () => setMessages(old => old.map(m => m.id === assistantId ? { ...m, parts: [{ type: "dynamic-tool", toolName: "investigacion-oficial", toolCallId: assistantId, state: toolState, input: { fuentes: SOURCES.map(s => s.name) }, output: { fuentes: [...sources.keys()] } }, { type: "text", text }, ...[...sources].map(([url, title], i) => ({ type: "source-url" as const, sourceId: String(i), url, title }))] } : m));
+    const update = () => {
+      const toolBase = { type: "dynamic-tool" as const, toolName: "investigacion-oficial", toolCallId: assistantId, input: { fuentes: SOURCES.map(s => s.name) } };
+      const tool: UIMessage["parts"][number] = toolState === "output-available" ? { ...toolBase, state: "output-available", output: { fuentes: [...sources.keys()] } } : toolState === "output-error" ? { ...toolBase, state: "output-error", errorText: "Investigación no completada." } : { ...toolBase, state: "input-available" };
+      setMessages(old => old.map(m => m.id === assistantId ? { ...m, parts: [tool, { type: "text", text }, ...[...sources].map(([url, title], i) => ({ type: "source-url" as const, sourceId: String(i), url, title }))] } : m));
+    };
     try {
       const { data } = await supabase.auth.getSession();
       if (!data.session) throw new Error("Iniciá sesión para continuar.");
