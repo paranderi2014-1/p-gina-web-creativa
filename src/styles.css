@@ -306,49 +306,201 @@
 }
 
 /* Platform shell adapted from the supplied autonomous preview. */
-.lexia-layout { padding-top: 64px; }
-.lexia-topbar { height: 64px; position: fixed; inset: 0 0 auto 0; z-index: 45; display: flex; align-items: center; gap: 12px; padding: 0 20px; background: var(--card); border-bottom: 1px solid var(--border); }
-.lexia-sidebar { position: fixed; inset: 0 auto 0 0; width: 260px; z-index: 50; padding: 24px 16px; background: var(--navy); color: var(--navy-foreground); overflow-y: auto; transform: translateX(-100%); transition: transform .2s; }
-.lexia-sidebar.is-open { transform: translateX(0); }
-.lexia-sidebar select { background: var(--navy); color: var(--navy-foreground); border-color: color-mix(in oklab, var(--navy-foreground) 25%, transparent); text-transform: none; font-size: 12px; }
-.lexia-nav-link { display: flex; align-items: center; gap: 11px; padding: 10px 12px; margin: 2px 0; border-radius: 6px; font-size: 12px; line-height: 1.4; color: color-mix(in oklab, var(--navy-foreground) 83%, transparent); }
-.lexia-nav-link:hover, .lexia-nav-link.active { background: color-mix(in oklab, var(--navy-foreground) 10%, transparent); color: var(--navy-foreground); }
-.lexia-nav-link.active { border-left: 3px solid var(--gold); padding-left: 9px; }
-.lexia-sidebar .professional-view .lexia-nav-link { padding-top: 12px; padding-bottom: 12px; }
-.lexia-menu-overlay { position: fixed; inset: 64px 0 0; height: auto; width: 100%; z-index: 46; background: color-mix(in oklab, var(--foreground) 40%, transparent); border-radius: 0; }
-.lexia-chat { display: flex; flex-direction: column; height: min(900px, calc(100dvh - 112px)); min-height: 480px; background: var(--card); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
-.lexia-composer textarea { box-shadow: none; border: none; min-height: 70px; border-radius: 0; background: transparent; padding: 12px; margin: 0; }
-.lexia-composer textarea:focus { box-shadow: none; }
-.lexia-composer [data-slot="input-group"] { overflow: hidden; border-radius: 8px; }
-.lexia-composer [data-slot="input-group-addon"] { padding: 8px 12px; }
-.lexia-chat .is-user { color: var(--primary-foreground); }
-.lexia-chat .is-user > div:first-child { background: var(--primary); color: var(--primary-foreground); }
-.lexia-chat .is-assistant { overflow-wrap: anywhere; }
-.lexia-chat [data-streamdown="link"] { color: var(--link); text-decoration: underline; }
-.thread-workspace { display: grid; grid-template-columns: 200px minmax(0, 1fr); gap: 16px; }
-.thread-list { min-width: 0; }
-.thread-workspace .lexia-chat { height: min(900px, calc(100dvh - 180px)); }
-.google-signin { background: #fff; color: #1f1f1f; border-color: #747775; font-weight: 500; }
-.google-signin:hover { background: #f2f2f2; color: #1f1f1f; }
-.dark .google-signin { background: #131314; color: #e3e3e3; border-color: #8e918f; }
+.lexia-layout {
+  padding-top: 64px;
+}
+.lexia-topbar {
+  height: 64px;
+  position: fixed;
+  inset: 0 0 auto 0;
+  z-index: 45;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 0 20px;
+  background: var(--card);
+  border-bottom: 1px solid var(--border);
+}
+.lexia-sidebar {
+  position: fixed;
+  inset: 0 auto 0 0;
+  width: 260px;
+  z-index: 50;
+  padding: 24px 16px;
+  background: var(--navy);
+  color: var(--navy-foreground);
+  overflow-y: auto;
+  transform: translateX(-100%);
+  transition: transform 0.2s;
+}
+.lexia-sidebar.is-open {
+  transform: translateX(0);
+}
+.lexia-sidebar select {
+  background: var(--navy);
+  color: var(--navy-foreground);
+  border-color: color-mix(in oklab, var(--navy-foreground) 25%, transparent);
+  text-transform: none;
+  font-size: 12px;
+}
+.lexia-nav-link {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  padding: 10px 12px;
+  margin: 2px 0;
+  border-radius: 6px;
+  font-size: 12px;
+  line-height: 1.4;
+  color: color-mix(in oklab, var(--navy-foreground) 83%, transparent);
+}
+.lexia-nav-link:hover,
+.lexia-nav-link.active {
+  background: color-mix(in oklab, var(--navy-foreground) 10%, transparent);
+  color: var(--navy-foreground);
+}
+.lexia-nav-link.active {
+  border-left: 3px solid var(--gold);
+  padding-left: 9px;
+}
+.lexia-sidebar .professional-view .lexia-nav-link {
+  padding-top: 12px;
+  padding-bottom: 12px;
+}
+.lexia-menu-overlay {
+  position: fixed;
+  inset: 64px 0 0;
+  height: auto;
+  width: 100%;
+  z-index: 46;
+  background: color-mix(in oklab, var(--foreground) 40%, transparent);
+  border-radius: 0;
+}
+.lexia-chat {
+  display: flex;
+  flex-direction: column;
+  height: min(900px, calc(100dvh - 112px));
+  min-height: 480px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  overflow: hidden;
+}
+.lexia-composer textarea {
+  box-shadow: none;
+  border: none;
+  min-height: 70px;
+  border-radius: 0;
+  background: transparent;
+  padding: 12px;
+  margin: 0;
+}
+.lexia-composer textarea:focus {
+  box-shadow: none;
+}
+.lexia-composer [data-slot="input-group"] {
+  overflow: hidden;
+  border-radius: 8px;
+}
+.lexia-composer [data-slot="input-group-addon"] {
+  padding: 8px 12px;
+}
+.lexia-chat .is-user {
+  color: var(--primary-foreground);
+}
+.lexia-chat .is-user > div:first-child {
+  background: var(--primary);
+  color: var(--primary-foreground);
+}
+.lexia-chat .is-assistant {
+  overflow-wrap: anywhere;
+}
+.lexia-chat [data-streamdown="link"] {
+  color: var(--link);
+  text-decoration: underline;
+}
+.thread-workspace {
+  display: grid;
+  grid-template-columns: 200px minmax(0, 1fr);
+  gap: 16px;
+}
+.thread-list {
+  min-width: 0;
+}
+.thread-workspace .lexia-chat {
+  height: min(900px, calc(100dvh - 180px));
+}
+.google-signin {
+  background: #fff;
+  color: #1f1f1f;
+  border-color: #747775;
+  font-weight: 500;
+}
+.google-signin:hover {
+  background: #f2f2f2;
+  color: #1f1f1f;
+}
+.dark .google-signin {
+  background: #131314;
+  color: #e3e3e3;
+  border-color: #8e918f;
+}
 @media (min-width: 1024px) {
-  .lexia-layout { margin-left: 260px; }
-  .lexia-topbar { left: 260px; padding: 0 28px; }
-  .lexia-sidebar { transform: none; }
-  .lexia-main { padding-left: 28px; padding-right: 28px; }
-  .lexia-menu-overlay { display: none; }
+  .lexia-layout {
+    margin-left: 260px;
+  }
+  .lexia-topbar {
+    left: 260px;
+    padding: 0 28px;
+  }
+  .lexia-sidebar {
+    transform: none;
+  }
+  .lexia-main {
+    padding-left: 28px;
+    padding-right: 28px;
+  }
+  .lexia-menu-overlay {
+    display: none;
+  }
 }
 @media (max-width: 640px) {
-  .lexia-topbar { padding: 0 12px; }
-  .lexia-chat { min-height: 490px; height: calc(100dvh - 108px); }
-  .lexia-chat h1 { font-size: 26px; }
-  .lexia-chat h2 span { display: block; }
-  .thread-workspace { grid-template-columns: minmax(0, 1fr); }
-  .thread-list { max-height: 150px; overflow-y: auto; }
-  .thread-workspace .lexia-chat { height: 680px; }
-  .kpi { font-size: 26px; }
+  .lexia-topbar {
+    padding: 0 12px;
+  }
+  .lexia-chat {
+    min-height: 490px;
+    height: calc(100dvh - 108px);
+  }
+  .lexia-chat h1 {
+    font-size: 26px;
+  }
+  .lexia-chat h2 span {
+    display: block;
+  }
+  .thread-workspace {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .thread-list {
+    max-height: 150px;
+    overflow-y: auto;
+  }
+  .thread-workspace .lexia-chat {
+    height: 680px;
+  }
+  .kpi {
+    font-size: 26px;
+  }
 }
 @media (prefers-reduced-motion: reduce) {
-  html { scroll-behavior: auto; }
-  *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }

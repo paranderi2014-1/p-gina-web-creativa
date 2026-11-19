@@ -30,15 +30,19 @@ export function EscritosDemo() {
       <div className="small mt-4 rounded-xl border bg-paper p-4 leading-relaxed">
         <p className="font-bold">SEÑOR JUEZ — {juzgado}</p>
         <p className="mt-3">
-          En los autos caratulados “{caratula}”, vengo a promover demanda por {pretension}, por la suma de {monto}.
-        </p>
-        <p className="mt-3">I. HECHOS — Se exponen los hechos en orden cronológico, con la documentación acompañada.</p>
-        <p className="mt-3">
-          II. DERECHO — Fundamento en la legislación paraguaya aplicable al caso y en la jurisprudencia citada con fuente.
+          En los autos caratulados “{caratula}”, vengo a promover demanda por {pretension}, por la
+          suma de {monto}.
         </p>
         <p className="mt-3">
-          III. PETITORIO — Se solicita admitir la demanda, correr traslado y, en su momento, hacer lugar a lo peticionado,
-          con costas.
+          I. HECHOS — Se exponen los hechos en orden cronológico, con la documentación acompañada.
+        </p>
+        <p className="mt-3">
+          II. DERECHO — Fundamento en la legislación paraguaya aplicable al caso y en la
+          jurisprudencia citada con fuente.
+        </p>
+        <p className="mt-3">
+          III. PETITORIO — Se solicita admitir la demanda, correr traslado y, en su momento, hacer
+          lugar a lo peticionado, con costas.
         </p>
         <p className="mt-3 text-muted-foreground">
           Borrador generado para revisión. La supervisión humana es obligatoria antes de presentar.

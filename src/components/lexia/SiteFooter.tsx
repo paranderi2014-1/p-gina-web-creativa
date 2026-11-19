@@ -1,7 +1,12 @@
 import { Link } from "@tanstack/react-router";
 import { MODULES, SOURCES } from "@/lib/lexia-data";
 
-const SITES = ["www.lexiapy.com", "docs.lexiapy.com", "honorarios.lexiapy.com", "vigilancia.lexiapy.com"];
+const SITES = [
+  "www.lexiapy.com",
+  "docs.lexiapy.com",
+  "honorarios.lexiapy.com",
+  "vigilancia.lexiapy.com",
+];
 
 export function SiteFooter() {
   return (
@@ -18,7 +23,12 @@ export function SiteFooter() {
             <ul className="small mt-3 space-y-1">
               {SITES.map((s) => (
                 <li key={s}>
-                  <a className="underline" href={`https://${s}`} target="_blank" rel="noopener noreferrer">
+                  <a
+                    className="underline"
+                    href={`https://${s}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
                     {s}
                   </a>
                 </li>
@@ -44,7 +54,12 @@ export function SiteFooter() {
             <ul className="small mt-2 space-y-1 opacity-90">
               {SOURCES.map((s) => (
                 <li key={s.url}>
-                  <a className="hover:underline" href={s.url} target="_blank" rel="noopener noreferrer">
+                  <a
+                    className="hover:underline"
+                    href={s.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
                     {s.name} ↗
                   </a>
                 </li>
@@ -54,7 +69,9 @@ export function SiteFooter() {
         </div>
         <div className="mt-6 flex flex-col justify-between gap-2 border-t border-navy-foreground/15 pt-4 sm:flex-row">
           <p className="small opacity-75">© LEX IA PY — Supervisión humana primero.</p>
-          <p className="small opacity-75">Ley N° 7593/2025 • Ley N° 1376/88 • Ley N° 213/93 • Ley N° 1183/85 • Ley N° 6380/19</p>
+          <p className="small opacity-75">
+            Ley N° 7593/2025 • Ley N° 1376/88 • Ley N° 213/93 • Ley N° 1183/85 • Ley N° 6380/19
+          </p>
         </div>
       </footer>
     </div>

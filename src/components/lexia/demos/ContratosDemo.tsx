@@ -18,7 +18,10 @@ export function ContratosDemo() {
   ]);
 
   return (
-    <DemoCard title={`Wizard de Contratos — ${paso} de 3`} icon={<FileText size={20} className="text-gold" />}>
+    <DemoCard
+      title={`Wizard de Contratos — ${paso} de 3`}
+      icon={<FileText size={20} className="text-gold" />}
+    >
       <ProgressBar value={(paso / 3) * 100} tone="gold" />
 
       {paso === 1 && (
@@ -58,10 +61,15 @@ export function ContratosDemo() {
           </label>
           <label className="field">
             Salario / honorario mensual
-            <input type="number" value={monto} onChange={(e) => setMonto(Number(e.target.value) || 0)} />
+            <input
+              type="number"
+              value={monto}
+              onChange={(e) => setMonto(Number(e.target.value) || 0)}
+            />
           </label>
           <p className="small self-end text-muted-foreground">
-            Usa datos de ejemplo para la vista previa. Antes de firmar, revisa con supervisión humana.
+            Usa datos de ejemplo para la vista previa. Antes de firmar, revisa con supervisión
+            humana.
           </p>
         </div>
       )}
@@ -104,12 +112,15 @@ export function ContratosDemo() {
       </div>
 
       <div className="mt-4 rounded-xl border bg-paper p-4">
-        <p className="text-[11px] font-bold tracking-widest text-muted-foreground">VISTA PREVIA EN VIVO</p>
+        <p className="text-[11px] font-bold tracking-widest text-muted-foreground">
+          VISTA PREVIA EN VIVO
+        </p>
         <h3 className="font-display mt-2 text-xl font-bold">Contrato — {tipo}</h3>
         <p className="small mt-2 leading-relaxed">
-          Entre <b>{parteA}</b> y <b>{parteB}</b>, se acuerda un contrato de tipo <b>{tipo}</b>, por plazo{" "}
-          <b>{plazo}</b>, con contraprestación mensual de <b>{formatGs(monto)}</b>. Se rige por la Ley N° 213/93 y/o la
-          Ley N° 1183/85 (Código Civil), según el tipo elegido. La Ley N° 6380/19 corresponde a obligaciones tributarias.
+          Entre <b>{parteA}</b> y <b>{parteB}</b>, se acuerda un contrato de tipo <b>{tipo}</b>, por
+          plazo <b>{plazo}</b>, con contraprestación mensual de <b>{formatGs(monto)}</b>. Se rige
+          por la Ley N° 213/93 y/o la Ley N° 1183/85 (Código Civil), según el tipo elegido. La Ley
+          N° 6380/19 corresponde a obligaciones tributarias.
         </p>
         <ul className="small mt-2 space-y-1">
           {clausulas.map((c) => (

@@ -40,7 +40,11 @@ export function JurisprudenciaDemo() {
       <div className="mt-4 grid gap-3 sm:grid-cols-3">
         <label className="field">
           Buscar
-          <input value={q} onChange={(e) => setQ(e.target.value)} placeholder="Ej.: despido, prescripción, amparo" />
+          <input
+            value={q}
+            onChange={(e) => setQ(e.target.value)}
+            placeholder="Ej.: despido, prescripción, amparo"
+          />
         </label>
         <label className="field">
           Sala
@@ -63,8 +67,8 @@ export function JurisprudenciaDemo() {
         </label>
       </div>
       <p className="small mt-3 text-muted-foreground">
-        {resultados.length} fallos encontrados de {FALLOS.length} en la base de demostración. Base completa: CSJ
-        Jurisprudencia desde 1995.
+        {resultados.length} fallos encontrados de {FALLOS.length} en la base de demostración. Base
+        completa: CSJ Jurisprudencia desde 1995.
       </p>
       <div className="mt-3 grid gap-3 md:grid-cols-2">
         {resultados.map((f) => (
@@ -74,30 +78,41 @@ export function JurisprudenciaDemo() {
               {f.fecha} • {f.sala} • {f.magistrado} • {f.materia}
             </p>
             <p className="small mt-2 leading-relaxed">{f.extracto}</p>
-            <button type="button" className="mt-3 text-sm font-bold text-link" onClick={() => setPregunta(f.extracto)}>
+            <button
+              type="button"
+              className="mt-3 text-sm font-bold text-link"
+              onClick={() => setPregunta(f.extracto)}
+            >
               Contar el caso →
             </button>
           </article>
         ))}
         {resultados.length === 0 && (
           <p className="small rounded-xl bg-tint-warm p-4 md:col-span-2">
-            No encontré un fallo exacto con ese filtro. Ajusta la búsqueda o consulta la base completa en la fuente
-            oficial.
+            No encontré un fallo exacto con ese filtro. Ajusta la búsqueda o consulta la base
+            completa en la fuente oficial.
           </p>
         )}
       </div>
       <div className="mt-4 rounded-xl bg-tint-blue p-4">
         <p className="font-bold">Lexia — consulta sobre los extractos de demostración</p>
         <div className="mt-2 flex flex-col gap-2 sm:flex-row sm:items-end">
-          <input value={pregunta} onChange={(e) => setPregunta(e.target.value)} placeholder="Pregunta sobre un caso…" />
+          <input
+            value={pregunta}
+            onChange={(e) => setPregunta(e.target.value)}
+            placeholder="Pregunta sobre un caso…"
+          />
           <button type="button" className="btn btn-navy" onClick={preguntar}>
             Consultar extracto
           </button>
         </div>
         {respuesta && <p className="small mt-3 rounded-lg border bg-card p-3">{respuesta}</p>}
-        <Button asChild className="mt-3"><Link to="/asistente">Investigar con Lexia en fuentes oficiales</Link></Button>
+        <Button asChild className="mt-3">
+          <Link to="/asistente">Investigar con Lexia en fuentes oficiales</Link>
+        </Button>
         <p className="small mt-2">
-          Consejo: pide sin datos identificatorios. Ejemplo: “fallo sobre despido sin causa, sin nombres ni cédulas”.
+          Consejo: pide sin datos identificatorios. Ejemplo: “fallo sobre despido sin causa, sin
+          nombres ni cédulas”.
         </p>
       </div>
       <div className="mt-3">

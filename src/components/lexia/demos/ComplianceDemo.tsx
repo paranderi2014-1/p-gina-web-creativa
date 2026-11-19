@@ -1,6 +1,12 @@
 import { useState } from "react";
 import { ShieldCheck } from "lucide-react";
-import { JORNAL_MINIMO, calcularMulta, formatGs, type Gravedad, type TamanoEmpresa } from "@/lib/lexia-calc";
+import {
+  JORNAL_MINIMO,
+  calcularMulta,
+  formatGs,
+  type Gravedad,
+  type TamanoEmpresa,
+} from "@/lib/lexia-calc";
 import { CheckItem, DemoCard, ProgressBar, SourceLink, toggleIn } from "../shared";
 
 const CHECKLIST = [
@@ -21,7 +27,10 @@ export function ComplianceDemo() {
   const avance = (marcados.length / CHECKLIST.length) * 100;
 
   return (
-    <DemoCard title="Compliance MTESS — multa y checklist" icon={<ShieldCheck size={20} className="text-gold" />}>
+    <DemoCard
+      title="Compliance MTESS — multa y checklist"
+      icon={<ShieldCheck size={20} className="text-gold" />}
+    >
       <div className="mt-4 grid gap-3 sm:grid-cols-3">
         <label className="field">
           Tipo de infracción
@@ -67,7 +76,12 @@ export function ComplianceDemo() {
       </div>
       <div className="mt-3 grid gap-2 sm:grid-cols-2">
         {CHECKLIST.map((c) => (
-          <CheckItem key={c} label={c} checked={marcados.includes(c)} onChange={() => setMarcados((l) => toggleIn(l, c))} />
+          <CheckItem
+            key={c}
+            label={c}
+            checked={marcados.includes(c)}
+            onChange={() => setMarcados((l) => toggleIn(l, c))}
+          />
         ))}
       </div>
       <div className="mt-3">

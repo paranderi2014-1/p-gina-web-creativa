@@ -34,7 +34,7 @@ use the editor.
 - LEX IA PY site: each section (Inicio, Módulos, Calculadoras, Jurisprudencia, Vigilancia, Contratos, Precios, Fuentes) is its own route; the selected module lives in the `/modulos?m=N` search param so module links are shareable.
 - Legal/calculation rules (honorarios, liquidación, intereses, multas, predicción, anonimización) live as pure functions in `src/lib/lexia-calc.ts` with tests in `lexia-calc.test.ts`; demos only render them, so rules change in one place.
 - Site content (modules, official sources, demo fallos/documentos, FAQ) lives in `src/lib/lexia-data.ts`; pages read from it instead of hardcoding copy.
-- The CRM demo stores added clients in the visitor's browser only (no backend) because the site is a public demo without accounts.
+- The CRM demo stores added clients only in the visitor's browser; account-backed persistence is reserved for private AI conversations.
 - AI conversations are account-owned threads on dedicated URLs; persist messages once after successful streaming and enforce ownership with RLS and endpoint authentication so histories cannot cross accounts.
 - The chat uses AI Elements primitives and the Gateway Responses surface with domain-restricted official research; raw streaming stays in a server route while history operations use authenticated server functions.
 - Additional service inventory is centralized in `src/lib/lexia-services.ts` with separate leaf routes; preserve existing demos and explicitly distinguish inactive external services from connected capabilities.

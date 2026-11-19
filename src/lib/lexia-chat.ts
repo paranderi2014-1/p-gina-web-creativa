@@ -5,23 +5,62 @@ export const OFFICIAL_DOMAINS = ["bacn.gov.py", "pj.gov.py", "csj.gov.py", "apps
 export function isOfficialUrl(value: string) {
   try {
     const url = new URL(value);
-    return url.protocol === "https:" && OFFICIAL_DOMAINS.some(d => url.hostname === d || url.hostname.endsWith(`.${d}`));
-  } catch { return false; }
+    return (
+      url.protocol === "https:" &&
+      OFFICIAL_DOMAINS.some((d) => url.hostname === d || url.hostname.endsWith(`.${d}`))
+    );
+  } catch {
+    return false;
+  }
 }
-export const chatPartsSchema = z.array(z.union([
-  z.object({ type: z.literal("text"), text: z.string() }),
-  z.object({ type: z.literal("source-url"), sourceId: z.string(), url: z.string(), title: z.string().default("Fuente oficial") }),
-  z.object({ type: z.literal("dynamic-tool"), toolName: z.string(), toolCallId: z.string(), state: z.literal("input-available"), input: z.object({ fuentes: z.array(z.string()) }) }),
-  z.object({ type: z.literal("dynamic-tool"), toolName: z.string(), toolCallId: z.string(), state: z.literal("output-available"), input: z.object({ fuentes: z.array(z.string()) }), output: z.object({ fuentes: z.array(z.string()) }) }),
-  z.object({ type: z.literal("dynamic-tool"), toolName: z.string(), toolCallId: z.string(), state: z.literal("output-error"), input: z.object({ fuentes: z.array(z.string()) }), errorText: z.string() }),
-]));
+export const chatPartsSchema = z.array(
+  z.union([
+    z.object({ type: z.literal("text"), text: z.string() }),
+    z.object({
+      type: z.literal("source-url"),
+      sourceId: z.string(),
+      url: z.string(),
+      title: z.string().default("Fuente oficial"),
+    }),
+    z.object({
+      type: z.literal("dynamic-tool"),
+      toolName: z.string(),
+      toolCallId: z.string(),
+      state: z.literal("input-available"),
+      input: z.object({ fuentes: z.array(z.string()) }),
+    }),
+    z.object({
+      type: z.literal("dynamic-tool"),
+      toolName: z.string(),
+      toolCallId: z.string(),
+      state: z.literal("output-available"),
+      input: z.object({ fuentes: z.array(z.string()) }),
+      output: z.object({ fuentes: z.array(z.string()) }),
+    }),
+    z.object({
+      type: z.literal("dynamic-tool"),
+      toolName: z.string(),
+      toolCallId: z.string(),
+      state: z.literal("output-error"),
+      input: z.object({ fuentes: z.array(z.string()) }),
+      errorText: z.string(),
+    }),
+  ]),
+);
 export type LexiaMessage = UIMessage;
 export function textOf(parts: unknown) {
-  return chatPartsSchema.parse(parts).filter(p => p.type === "text").map(p => p.text).join("\n");
+  return chatPartsSchema
+    .parse(parts)
+    .filter((p) => p.type === "text")
+    .map((p) => p.text)
+    .join("\n");
 }
 export const streamEventSchema = z.discriminatedUnion("kind", [
   z.object({ kind: z.literal("text"), delta: z.string() }),
-  z.object({ kind: z.literal("search"), state: z.enum(["input-available", "output-available", "output-error"]) }),
+  z.object({
+    kind: z.literal("search"),
+    state: z.enum(["input-available", "output-available", "output-error"]),
+  }),
   z.object({ kind: z.literal("source"), url: z.string(), title: z.string() }),
   z.object({ kind: z.literal("done"), id: z.string() }),
   z.object({ kind: z.literal("error"), message: z.string() }),

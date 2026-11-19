@@ -18,7 +18,10 @@ export function VigilanciaDemo() {
   const simular = () => {
     const t = new Date().toLocaleTimeString("es-PY", { hour: "2-digit", minute: "2-digit" });
     setAlertas((a) => [
-      { t, msg: "Expediente 1234/2024 — Simulación en vivo: nueva actuación detectada y resumen IA generado." },
+      {
+        t,
+        msg: "Expediente 1234/2024 — Simulación en vivo: nueva actuación detectada y resumen IA generado.",
+      },
       ...a,
     ]);
     setNuevas((n) => n + 1);
@@ -58,8 +61,8 @@ export function VigilanciaDemo() {
         ))}
       </div>
       <p className="small mt-3 text-muted-foreground">
-        Horarios de monitoreo: 7:01 • 9:30 • 13:01. Límite: 12 consultas por minuto. La contraseña nunca queda en
-        registros.
+        Horarios de monitoreo: 7:01 • 9:30 • 13:01. Límite: 12 consultas por minuto. La contraseña
+        nunca queda en registros.
       </p>
       <div className="mt-2 flex flex-wrap gap-4">
         <SourceLink idx={2} label="Abrir CSJ Gestión" />

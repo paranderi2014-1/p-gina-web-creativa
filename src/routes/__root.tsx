@@ -140,13 +140,16 @@ function RootComponent() {
   return (
     <QueryClientProvider client={queryClient}>
       {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
-      <AuthProvider><div className="lexia-layout min-h-screen bg-background">
-        <SiteHeader />
-        <main className="lexia-main mx-auto max-w-7xl px-4 sm:px-6">
-          <Outlet />
-        </main>
-        <SiteFooter />
-      </div><Toaster /></AuthProvider>
+      <AuthProvider>
+        <div className="lexia-layout min-h-screen bg-background">
+          <SiteHeader />
+          <main className="lexia-main mx-auto max-w-7xl px-4 sm:px-6">
+            <Outlet />
+          </main>
+          <SiteFooter />
+        </div>
+        <Toaster />
+      </AuthProvider>
     </QueryClientProvider>
   );
 }

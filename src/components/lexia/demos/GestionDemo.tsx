@@ -11,7 +11,11 @@ interface Cliente {
 
 const STORAGE_KEY = "lexia_clients";
 const EJEMPLOS: Cliente[] = [
-  { nombre: "Estudio Jurídico Asunción", caratula: "Ejemplo — Revisión de contratos", estado: "Activo" },
+  {
+    nombre: "Estudio Jurídico Asunción",
+    caratula: "Ejemplo — Revisión de contratos",
+    estado: "Activo",
+  },
   { nombre: "Comercial Central S.A.", caratula: "Ejemplo — Auditoría MTESS", estado: "En espera" },
 ];
 
@@ -55,15 +59,31 @@ export function GestionDemo() {
   };
 
   const visibles = [...guardados, ...EJEMPLOS].filter(
-    (c) => (filtro === "Todos" || c.estado === filtro) && (c.nombre + c.caratula).toLowerCase().includes(q.toLowerCase()),
+    (c) =>
+      (filtro === "Todos" || c.estado === filtro) &&
+      (c.nombre + c.caratula).toLowerCase().includes(q.toLowerCase()),
   );
 
   return (
     <DemoCard title="CRM Legal — clientes y casos" icon={<Users size={20} className="text-gold" />}>
       <div className="mt-4 grid gap-2 sm:grid-cols-4 sm:items-end">
-        <input value={nombre} onChange={(e) => setNombre(e.target.value)} placeholder="Nombre del cliente" aria-label="Nombre del cliente" />
-        <input value={caratula} onChange={(e) => setCaratula(e.target.value)} placeholder="Caso / carátula" aria-label="Caso / carátula" />
-        <select value={nuevoEstado} onChange={(e) => setNuevoEstado(e.target.value)} aria-label="Estado">
+        <input
+          value={nombre}
+          onChange={(e) => setNombre(e.target.value)}
+          placeholder="Nombre del cliente"
+          aria-label="Nombre del cliente"
+        />
+        <input
+          value={caratula}
+          onChange={(e) => setCaratula(e.target.value)}
+          placeholder="Caso / carátula"
+          aria-label="Caso / carátula"
+        />
+        <select
+          value={nuevoEstado}
+          onChange={(e) => setNuevoEstado(e.target.value)}
+          aria-label="Estado"
+        >
           <option>Activo</option>
           <option>En espera</option>
           <option>Cerrado</option>
@@ -78,8 +98,18 @@ export function GestionDemo() {
         </p>
       )}
       <div className="mt-3 flex flex-col gap-2 sm:flex-row sm:items-end">
-        <input value={q} onChange={(e) => setQ(e.target.value)} placeholder="Buscar cliente o caso…" aria-label="Buscar cliente o caso" />
-        <select value={filtro} onChange={(e) => setFiltro(e.target.value)} className="sm:max-w-48" aria-label="Filtrar por estado">
+        <input
+          value={q}
+          onChange={(e) => setQ(e.target.value)}
+          placeholder="Buscar cliente o caso…"
+          aria-label="Buscar cliente o caso"
+        />
+        <select
+          value={filtro}
+          onChange={(e) => setFiltro(e.target.value)}
+          className="sm:max-w-48"
+          aria-label="Filtrar por estado"
+        >
           <option>Todos</option>
           <option>Activo</option>
           <option>En espera</option>
@@ -91,7 +121,10 @@ export function GestionDemo() {
       ) : (
         <div className="mt-3 space-y-2">
           {visibles.map((c, i) => (
-            <div key={`${c.nombre}-${i}`} className="flex flex-wrap justify-between gap-2 rounded-xl border p-3">
+            <div
+              key={`${c.nombre}-${i}`}
+              className="flex flex-wrap justify-between gap-2 rounded-xl border p-3"
+            >
               <div>
                 <p className="font-bold">{c.nombre}</p>
                 <p className="small text-muted-foreground">{c.caratula}</p>
@@ -99,11 +132,14 @@ export function GestionDemo() {
               <span className="chip h-fit">{c.estado}</span>
             </div>
           ))}
-          {visibles.length === 0 && <p className="small rounded-xl bg-tint-warm p-3">Sin resultados para ese filtro.</p>}
+          {visibles.length === 0 && (
+            <p className="small rounded-xl bg-tint-warm p-3">Sin resultados para ese filtro.</p>
+          )}
         </div>
       )}
       <p className="small mt-3 text-muted-foreground">
-        Los clientes que añades se guardan solo en este navegador. Los dos últimos son ejemplos de la demostración.
+        Los clientes que añades se guardan solo en este navegador. Los dos últimos son ejemplos de
+        la demostración.
       </p>
     </DemoCard>
   );

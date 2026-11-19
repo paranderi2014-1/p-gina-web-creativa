@@ -30,6 +30,7 @@ import { Route as PreciosRouteImport } from './routes/precios'
 import { Route as ResetPasswordRouteImport } from './routes/reset-password'
 import { Route as VigilanciaRouteImport } from './routes/vigilancia'
 import { Route as ApiLexiaRouteImport } from './routes/api/lexia'
+import { Route as AsistenteIndexRouteImport } from './routes/asistente.index'
 import { Route as AuthenticatedAsistenteThreadIdRouteImport } from './routes/_authenticated/asistente.$threadId'
 
 const IndexRoute = IndexRouteImport.update({
@@ -136,6 +137,11 @@ const ApiLexiaRoute = ApiLexiaRouteImport.update({
   path: '/api/lexia',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AsistenteIndexRoute = AsistenteIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => AsistenteRoute,
+} as any)
 const AuthenticatedAsistenteThreadIdRoute =
   AuthenticatedAsistenteThreadIdRouteImport.update({
     id: '/asistente/$threadId',
@@ -146,7 +152,7 @@ const AuthenticatedAsistenteThreadIdRoute =
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/academia': typeof AcademiaRoute
-  '/asistente': typeof AsistenteRoute
+  '/asistente': typeof AsistenteRouteWithChildren
   '/auth': typeof AuthRoute
   '/avanzadas': typeof AvanzadasRoute
   '/calculadoras': typeof CalculadorasRoute
@@ -164,12 +170,12 @@ export interface FileRoutesByFullPath {
   '/reset-password': typeof ResetPasswordRoute
   '/vigilancia': typeof VigilanciaRoute
   '/api/lexia': typeof ApiLexiaRoute
+  '/asistente/': typeof AsistenteIndexRoute
   '/asistente/$threadId': typeof AuthenticatedAsistenteThreadIdRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/academia': typeof AcademiaRoute
-  '/asistente': typeof AsistenteRoute
   '/auth': typeof AuthRoute
   '/avanzadas': typeof AvanzadasRoute
   '/calculadoras': typeof CalculadorasRoute
@@ -187,6 +193,7 @@ export interface FileRoutesByTo {
   '/reset-password': typeof ResetPasswordRoute
   '/vigilancia': typeof VigilanciaRoute
   '/api/lexia': typeof ApiLexiaRoute
+  '/asistente': typeof AsistenteIndexRoute
   '/asistente/$threadId': typeof AuthenticatedAsistenteThreadIdRoute
 }
 export interface FileRoutesById {
@@ -194,7 +201,7 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/_authenticated': typeof AuthenticatedRouteRouteWithChildren
   '/academia': typeof AcademiaRoute
-  '/asistente': typeof AsistenteRoute
+  '/asistente': typeof AsistenteRouteWithChildren
   '/auth': typeof AuthRoute
   '/avanzadas': typeof AvanzadasRoute
   '/calculadoras': typeof CalculadorasRoute
@@ -212,6 +219,7 @@ export interface FileRoutesById {
   '/reset-password': typeof ResetPasswordRoute
   '/vigilancia': typeof VigilanciaRoute
   '/api/lexia': typeof ApiLexiaRoute
+  '/asistente/': typeof AsistenteIndexRoute
   '/_authenticated/asistente/$threadId': typeof AuthenticatedAsistenteThreadIdRoute
 }
 export interface FileRouteTypes {
@@ -237,12 +245,12 @@ export interface FileRouteTypes {
     | '/reset-password'
     | '/vigilancia'
     | '/api/lexia'
+    | '/asistente/'
     | '/asistente/$threadId'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
     | '/academia'
-    | '/asistente'
     | '/auth'
     | '/avanzadas'
     | '/calculadoras'
@@ -260,6 +268,7 @@ export interface FileRouteTypes {
     | '/reset-password'
     | '/vigilancia'
     | '/api/lexia'
+    | '/asistente'
     | '/asistente/$threadId'
   id:
     | '__root__'
@@ -284,6 +293,7 @@ export interface FileRouteTypes {
     | '/reset-password'
     | '/vigilancia'
     | '/api/lexia'
+    | '/asistente/'
     | '/_authenticated/asistente/$threadId'
   fileRoutesById: FileRoutesById
 }
@@ -291,7 +301,7 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AuthenticatedRouteRoute: typeof AuthenticatedRouteRouteWithChildren
   AcademiaRoute: typeof AcademiaRoute
-  AsistenteRoute: typeof AsistenteRoute
+  AsistenteRoute: typeof AsistenteRouteWithChildren
   AuthRoute: typeof AuthRoute
   AvanzadasRoute: typeof AvanzadasRoute
   CalculadorasRoute: typeof CalculadorasRoute
@@ -460,6 +470,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ApiLexiaRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/asistente/': {
+      id: '/asistente/'
+      path: '/'
+      fullPath: '/asistente/'
+      preLoaderRoute: typeof AsistenteIndexRouteImport
+      parentRoute: typeof AsistenteRoute
+    }
     '/_authenticated/asistente/$threadId': {
       id: '/_authenticated/asistente/$threadId'
       path: '/asistente/$threadId'
@@ -481,11 +498,23 @@ const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
 const AuthenticatedRouteRouteWithChildren =
   AuthenticatedRouteRoute._addFileChildren(AuthenticatedRouteRouteChildren)
 
+interface AsistenteRouteChildren {
+  AsistenteIndexRoute: typeof AsistenteIndexRoute
+}
+
+const AsistenteRouteChildren: AsistenteRouteChildren = {
+  AsistenteIndexRoute: AsistenteIndexRoute,
+}
+
+const AsistenteRouteWithChildren = AsistenteRoute._addFileChildren(
+  AsistenteRouteChildren,
+)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AuthenticatedRouteRoute: AuthenticatedRouteRouteWithChildren,
   AcademiaRoute: AcademiaRoute,
-  AsistenteRoute: AsistenteRoute,
+  AsistenteRoute: AsistenteRouteWithChildren,
   AuthRoute: AuthRoute,
   AvanzadasRoute: AvanzadasRoute,
   CalculadorasRoute: CalculadorasRoute,

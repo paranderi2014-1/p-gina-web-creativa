@@ -19,7 +19,13 @@ export function PrediccionDemo() {
         {sliders.map(([label, v, set]) => (
           <label key={label} className="field">
             {label}: {v}
-            <input type="range" min={0} max={100} value={v} onChange={(e) => set(Number(e.target.value))} />
+            <input
+              type="range"
+              min={0}
+              max={100}
+              value={v}
+              onChange={(e) => set(Number(e.target.value))}
+            />
           </label>
         ))}
       </div>
@@ -27,7 +33,8 @@ export function PrediccionDemo() {
         <p className="small opacity-80">Probabilidad estimada de éxito</p>
         <p className="kpi">{r.prob}%</p>
         <p className="small mt-1">
-          Intervalo de confianza: {r.desde}% a {r.hasta}% • Sobre jurisprudencia real de 2ª instancia.
+          Intervalo de confianza: {r.desde}% a {r.hasta}% • Sobre jurisprudencia real de 2ª
+          instancia.
         </p>
         <div className="mt-3 h-3 overflow-hidden rounded-full bg-navy-foreground/20">
           <div className="h-full bg-gold transition-all" style={{ width: `${r.prob}%` }} />
@@ -35,7 +42,8 @@ export function PrediccionDemo() {
         <p className="small mt-3">{r.lectura}</p>
       </div>
       <p className="small mt-3 text-muted-foreground">
-        Estimación de apoyo a la decisión. No predice el fallo de un tribunal. La decisión final siempre es humana.
+        Estimación de apoyo a la decisión. No predice el fallo de un tribunal. La decisión final
+        siempre es humana.
       </p>
       <SourceLink idx={6} />
     </DemoCard>

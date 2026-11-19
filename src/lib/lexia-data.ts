@@ -271,7 +271,8 @@ export const MODULES: LexModule[] = [
     title: "Escritos",
     short: "Escritos, dictámenes y resoluciones automatizados desde los datos del caso.",
     icon: "file-check",
-    legal: "Ley N° 1337/88 Código Procesal Civil. Ley N° 1183/85 Código Civil. Ley N° 6380/19 para asuntos tributarios.",
+    legal:
+      "Ley N° 1337/88 Código Procesal Civil. Ley N° 1183/85 Código Civil. Ley N° 6380/19 para asuntos tributarios.",
     source: 5,
     functions: [
       "9.4 Escritos automatizados",
@@ -396,11 +397,26 @@ export const FALLOS: Fallo[] = [
 ];
 
 export const DOCUMENTOS = [
-  { t: "Contrato de servicios — Consultoría 2024", tema: "Contratos", rel: 94, fecha: "12/02/2024" },
+  {
+    t: "Contrato de servicios — Consultoría 2024",
+    tema: "Contratos",
+    rel: 94,
+    fecha: "12/02/2024",
+  },
   { t: "Demanda laboral — Despido y liquidación", tema: "Laboral", rel: 91, fecha: "03/03/2024" },
   { t: "Pagaré y reconocimiento de deuda", tema: "Ejecutivo", rel: 88, fecha: "19/04/2024" },
-  { t: "Acta de inspección MTESS — Sucursal Central", tema: "Compliance", rel: 82, fecha: "22/05/2024" },
-  { t: "A. y S. sobre prescripción — extracto", tema: "Jurisprudencia", rel: 78, fecha: "08/06/2024" },
+  {
+    t: "Acta de inspección MTESS — Sucursal Central",
+    tema: "Compliance",
+    rel: 82,
+    fecha: "22/05/2024",
+  },
+  {
+    t: "A. y S. sobre prescripción — extracto",
+    tema: "Jurisprudencia",
+    rel: 78,
+    fecha: "08/06/2024",
+  },
   { t: "Poder general para juicios — Estudio", tema: "Gestión", rel: 66, fecha: "15/07/2024" },
 ];
 

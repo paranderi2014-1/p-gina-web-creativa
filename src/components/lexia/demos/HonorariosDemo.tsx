@@ -23,7 +23,9 @@ export function HonorariosDemo() {
 
   const descargar = () => {
     const blob = new Blob(
-      [`${resumen}\n\nDesglose: mínimo, máximo, artículo aplicable y jornal vigente. Revisar con supervisión humana.`],
+      [
+        `${resumen}\n\nDesglose: mínimo, máximo, artículo aplicable y jornal vigente. Revisar con supervisión humana.`,
+      ],
       { type: "text/plain" },
     );
     const url = URL.createObjectURL(blob);
@@ -38,12 +40,20 @@ export function HonorariosDemo() {
     <DemoCard
       title="Honorarios LEX IA — calculadora en vivo"
       icon={<Calculator size={20} className="text-gold" />}
-      aside={<span className="chip">Jornal vigente: {formatGs(JORNAL_MINIMO)} • Res. MTESS N° 670/2026</span>}
+      aside={
+        <span className="chip">
+          Jornal vigente: {formatGs(JORNAL_MINIMO)} • Res. MTESS N° 670/2026
+        </span>
+      }
     >
       <div className="mt-4 grid gap-3 sm:grid-cols-3">
         <label className="field">
           Monto del juicio (Gs.)
-          <input type="number" value={monto} onChange={(e) => setMonto(Number(e.target.value) || 0)} />
+          <input
+            type="number"
+            value={monto}
+            onChange={(e) => setMonto(Number(e.target.value) || 0)}
+          />
         </label>
         <label className="field">
           Instancia
@@ -83,10 +93,12 @@ export function HonorariosDemo() {
       <div className="mt-4 rounded-xl border border-gold-soft bg-tint-cream p-4">
         <p className="font-bold">Desglose</p>
         <p className="small mt-1">
-          Base {formatGs(monto)} • Instancia {instancia} • Modalidad {modalidad} • Rango calculado en vivo.{" "}
+          Base {formatGs(monto)} • Instancia {instancia} • Modalidad {modalidad} • Rango calculado
+          en vivo.{" "}
           {modalidad === "jornales" &&
             `Equivale a ${r.jornalesMin} a ${r.jornalesMax} jornales de ${formatGs(JORNAL_MINIMO)}. `}
-          El resultado es una estimación para cotizar y verificar; la regulación final corresponde al juzgado.
+          El resultado es una estimación para cotizar y verificar; la regulación final corresponde
+          al juzgado.
         </p>
       </div>
 
@@ -95,11 +107,19 @@ export function HonorariosDemo() {
         <div className="mt-3 grid gap-3 sm:grid-cols-3">
           <label className="field">
             Salario mensual
-            <input type="number" value={salario} onChange={(e) => setSalario(Number(e.target.value) || 0)} />
+            <input
+              type="number"
+              value={salario}
+              onChange={(e) => setSalario(Number(e.target.value) || 0)}
+            />
           </label>
           <label className="field">
             Antigüedad (años)
-            <input type="number" value={anios} onChange={(e) => setAnios(Number(e.target.value) || 0)} />
+            <input
+              type="number"
+              value={anios}
+              onChange={(e) => setAnios(Number(e.target.value) || 0)}
+            />
           </label>
           <div className="rounded-xl bg-tint-green p-3">
             <p className="small">Estimación referencial</p>

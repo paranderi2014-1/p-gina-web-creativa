@@ -32,7 +32,12 @@ function Precios() {
           </p>
           <p className="small text-muted-foreground">IVA incluido.</p>
           <ul className="small mt-4 flex-1 space-y-2">
-            {["Calculadora judicial completa", "PDF con citas", "Liquidación y horas extras", "Historial"].map((g) => (
+            {[
+              "Calculadora judicial completa",
+              "PDF con citas",
+              "Liquidación y horas extras",
+              "Historial",
+            ].map((g) => (
               <li key={g}>✓ {g}</li>
             ))}
           </ul>
@@ -41,7 +46,9 @@ function Precios() {
           </Link>
         </div>
         <div className="card relative flex flex-col !border-gold p-5 ring-2 ring-gold-soft">
-          <span className="chip absolute -top-3 right-4 !bg-gold !text-gold-foreground">Más elegido</span>
+          <span className="chip absolute -top-3 right-4 !bg-gold !text-gold-foreground">
+            Más elegido
+          </span>
           <p className="font-bold">Jurisprudencia Profesional</p>
           <p className="kpi mt-2">
             {formatGs(99000)}
@@ -67,11 +74,14 @@ function Precios() {
           <p className="kpi mt-2">{formatGs(1290000)}</p>
           <p className="small opacity-80">Pago único • Acceso vitalicio • IVA incluido.</p>
           <ul className="small mt-4 flex-1 space-y-2">
-            {["Acceso a los 12 Módulos", "Vigilancia con prueba extendida", "Actualizaciones de legislación", "Soporte prioritario"].map(
-              (g) => (
-                <li key={g}>✓ {g}</li>
-              ),
-            )}
+            {[
+              "Acceso a los 12 Módulos",
+              "Vigilancia con prueba extendida",
+              "Actualizaciones de legislación",
+              "Soporte prioritario",
+            ].map((g) => (
+              <li key={g}>✓ {g}</li>
+            ))}
           </ul>
           <Link to="/modulos" className="btn btn-gold mt-5 w-full">
             Ver los 12 Módulos
@@ -93,7 +103,9 @@ function Precios() {
                 {q}
                 <span aria-hidden>{abierta === i ? "−" : "+"}</span>
               </button>
-              {abierta === i && <p className="small px-3 pb-3 leading-relaxed text-muted-foreground">{a}</p>}
+              {abierta === i && (
+                <p className="small px-3 pb-3 leading-relaxed text-muted-foreground">{a}</p>
+              )}
             </div>
           ))}
         </div>

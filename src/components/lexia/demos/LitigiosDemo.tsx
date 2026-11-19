@@ -4,19 +4,46 @@ import { ArrowRight, Briefcase } from "lucide-react";
 import { DemoCard, SourceLink } from "../shared";
 
 const JUICIOS = [
-  { c: "Despido — Ana Benítez", e: "Etapa de prueba", p: "Traslado 3 días", j: "Laboral 2° Asunción" },
-  { c: "Cobro de salarios — Carlos Fleitas", e: "Demanda admitida", p: "Audiencia 12/06", j: "Laboral 1° Central" },
-  { c: "Indemnización — Laura Ortiz", e: "Sentencia", p: "Liquidación en curso", j: "Laboral 3° Asunción" },
-  { c: "Horas extras — Diego Cáceres", e: "Conciliación", p: "Propuesta en revisión", j: "Laboral 2° Luque" },
+  {
+    c: "Despido — Ana Benítez",
+    e: "Etapa de prueba",
+    p: "Traslado 3 días",
+    j: "Laboral 2° Asunción",
+  },
+  {
+    c: "Cobro de salarios — Carlos Fleitas",
+    e: "Demanda admitida",
+    p: "Audiencia 12/06",
+    j: "Laboral 1° Central",
+  },
+  {
+    c: "Indemnización — Laura Ortiz",
+    e: "Sentencia",
+    p: "Liquidación en curso",
+    j: "Laboral 3° Asunción",
+  },
+  {
+    c: "Horas extras — Diego Cáceres",
+    e: "Conciliación",
+    p: "Propuesta en revisión",
+    j: "Laboral 2° Luque",
+  },
 ];
 
 export function LitigiosDemo() {
   const [q, setQ] = useState("");
   const lista = JUICIOS.filter((u) => (u.c + u.e + u.j).toLowerCase().includes(q.toLowerCase()));
   return (
-    <DemoCard title="Litigios Laborales — tabla de juicios" icon={<Briefcase size={20} className="text-gold" />}>
+    <DemoCard
+      title="Litigios Laborales — tabla de juicios"
+      icon={<Briefcase size={20} className="text-gold" />}
+    >
       <div className="mt-3 flex flex-col gap-2 sm:flex-row sm:items-end">
-        <input value={q} onChange={(e) => setQ(e.target.value)} placeholder="Buscar por carátula, etapa o juzgado…" />
+        <input
+          value={q}
+          onChange={(e) => setQ(e.target.value)}
+          placeholder="Buscar por carátula, etapa o juzgado…"
+        />
         <Link to="/calculadoras" className="btn btn-navy">
           Ir a calculadora de liquidación <ArrowRight size={15} />
         </Link>

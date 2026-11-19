@@ -24,7 +24,9 @@ function Modulos() {
   const [filtro, setFiltro] = useState("");
   const actual = getModule(m);
   const visibles = MODULES.filter((x) =>
-    (x.title + x.code + x.short + x.legal + x.functions.join(" ")).toLowerCase().includes(filtro.toLowerCase()),
+    (x.title + x.code + x.short + x.legal + x.functions.join(" "))
+      .toLowerCase()
+      .includes(filtro.toLowerCase()),
   );
   const fuente = getSource(actual.source);
 
@@ -36,7 +38,12 @@ function Modulos() {
         sub="Cada Módulo tiene su lista completa de funciones, su fundamento legal y una demo interactiva. Usa el buscador para filtrar."
       />
       <div className="mt-5 flex flex-col gap-3 sm:flex-row sm:items-end">
-        <input value={filtro} onChange={(e) => setFiltro(e.target.value)} placeholder="Filtrar Módulos…" aria-label="Filtrar módulos" />
+        <input
+          value={filtro}
+          onChange={(e) => setFiltro(e.target.value)}
+          placeholder="Filtrar Módulos…"
+          aria-label="Filtrar módulos"
+        />
         <button type="button" className="btn btn-line" onClick={() => setFiltro("")}>
           Limpiar
         </button>
@@ -54,13 +61,17 @@ function Modulos() {
             {x.id}. {x.title}
           </Link>
         ))}
-        {visibles.length === 0 && <p className="small text-muted-foreground">Ningún módulo coincide.</p>}
+        {visibles.length === 0 && (
+          <p className="small text-muted-foreground">Ningún módulo coincide.</p>
+        )}
       </div>
 
       <div className="card mt-4 p-4 sm:p-6">
         <div className="flex flex-wrap justify-between gap-3">
           <div>
-            <p className="text-[12px] font-extrabold tracking-widest text-kicker">MÓDULO {actual.id} DE 12</p>
+            <p className="text-[12px] font-extrabold tracking-widest text-kicker">
+              MÓDULO {actual.id} DE 12
+            </p>
             <h2 className="font-display mt-1 text-3xl font-bold text-navy">{actual.code}</h2>
             <p className="mt-2 max-w-2xl text-muted-foreground">{actual.short}</p>
           </div>
@@ -86,7 +97,12 @@ function Modulos() {
             <div className="mt-3 rounded-xl border p-4">
               <p className="font-bold">Fuente oficial que usa este Módulo</p>
               <p className="small mt-1">{fuente.name}</p>
-              <a className="small break-all font-bold text-link underline" href={fuente.url} target="_blank" rel="noopener noreferrer">
+              <a
+                className="small break-all font-bold text-link underline"
+                href={fuente.url}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 {fuente.url} ↗
               </a>
             </div>

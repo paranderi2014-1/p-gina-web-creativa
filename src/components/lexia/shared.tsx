@@ -34,7 +34,15 @@ export const MODULE_ICONS: Record<ModuleIconKey, LucideIcon> = {
   lock: Lock,
 };
 
-export function SectionTitle({ kicker, title, sub }: { kicker: string; title: string; sub?: string }) {
+export function SectionTitle({
+  kicker,
+  title,
+  sub,
+}: {
+  kicker: string;
+  title: string;
+  sub?: string;
+}) {
   return (
     <div className="max-w-3xl">
       <p className="text-[12px] font-extrabold uppercase tracking-[.18em] text-kicker">{kicker}</p>
@@ -46,7 +54,13 @@ export function SectionTitle({ kicker, title, sub }: { kicker: string; title: st
   );
 }
 
-export function SourceLink({ idx, label = "Verificar en fuente oficial" }: { idx: number; label?: string }) {
+export function SourceLink({
+  idx,
+  label = "Verificar en fuente oficial",
+}: {
+  idx: number;
+  label?: string;
+}) {
   const s = getSource(idx);
   return (
     <a
@@ -60,7 +74,17 @@ export function SourceLink({ idx, label = "Verificar en fuente oficial" }: { idx
   );
 }
 
-export function DemoCard({ title, icon, aside, children }: { title: string; icon?: ReactNode; aside?: ReactNode; children: ReactNode }) {
+export function DemoCard({
+  title,
+  icon,
+  aside,
+  children,
+}: {
+  title: string;
+  icon?: ReactNode;
+  aside?: ReactNode;
+  children: ReactNode;
+}) {
   return (
     <div className="card p-4 sm:p-6">
       <div className="flex flex-wrap items-center justify-between gap-3">
@@ -75,7 +99,13 @@ export function DemoCard({ title, icon, aside, children }: { title: string; icon
   );
 }
 
-export function ProgressBar({ value, tone = "success" }: { value: number; tone?: "success" | "gold" }) {
+export function ProgressBar({
+  value,
+  tone = "success",
+}: {
+  value: number;
+  tone?: "success" | "gold";
+}) {
   return (
     <div className="mt-2 h-2 overflow-hidden rounded-full bg-track">
       <div
@@ -86,7 +116,15 @@ export function ProgressBar({ value, tone = "success" }: { value: number; tone?:
   );
 }
 
-export function CheckItem({ label, checked, onChange }: { label: string; checked: boolean; onChange: () => void }) {
+export function CheckItem({
+  label,
+  checked,
+  onChange,
+}: {
+  label: string;
+  checked: boolean;
+  onChange: () => void;
+}) {
   return (
     <label className="small flex cursor-pointer gap-2 rounded-lg border p-2">
       <input type="checkbox" checked={checked} onChange={onChange} />

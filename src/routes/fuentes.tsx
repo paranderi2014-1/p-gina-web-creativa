@@ -22,7 +22,13 @@ function Fuentes() {
       />
       <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
         {SOURCES.map((s, i) => (
-          <a key={s.url} href={s.url} target="_blank" rel="noopener noreferrer" className="card block p-4 transition-shadow hover:shadow-lg">
+          <a
+            key={s.url}
+            href={s.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="card block p-4 transition-shadow hover:shadow-lg"
+          >
             <span className="chip">{String(i + 1).padStart(2, "0")} • Oficial</span>
             <h2 className="mt-3 font-bold leading-tight">{s.name}</h2>
             <p className="small mt-2 leading-relaxed text-muted-foreground">{s.desc}</p>

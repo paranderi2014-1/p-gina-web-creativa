@@ -5,7 +5,11 @@ import { MODULE_ICONS } from "./shared";
 
 export function ModuleGrid({ modules }: { modules: LexModule[] }) {
   if (modules.length === 0) {
-    return <p className="small mt-6 rounded-xl bg-tint-warm p-4">Ningún módulo coincide con esa búsqueda.</p>;
+    return (
+      <p className="small mt-6 rounded-xl bg-tint-warm p-4">
+        Ningún módulo coincide con esa búsqueda.
+      </p>
+    );
   }
   return (
     <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
