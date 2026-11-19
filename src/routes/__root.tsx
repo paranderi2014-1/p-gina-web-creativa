@@ -14,6 +14,8 @@ import appCss from "../styles.css?url";
 import { SiteHeader } from "../components/lexia/SiteHeader";
 import { SiteFooter } from "../components/lexia/SiteFooter";
 import { reportLovableError } from "../lib/lovable-error-reporting";
+import { AuthProvider } from "@/components/lexia/AuthProvider";
+import { Toaster } from "@/components/ui/sonner";
 
 function NotFoundComponent() {
   return (
@@ -109,7 +111,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         rel: "stylesheet",
         href: appCss,
       },
-      { rel: "icon", href: "/favicon.ico", type: "image/x-icon" },
+      { rel: "icon", href: "/favicon.png", type: "image/png" },
     ],
   }),
   shellComponent: RootShell,
@@ -138,13 +140,13 @@ function RootComponent() {
   return (
     <QueryClientProvider client={queryClient}>
       {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
-      <div className="min-h-screen bg-background">
+      <AuthProvider><div className="lexia-layout min-h-screen bg-background">
         <SiteHeader />
-        <main className="mx-auto max-w-7xl px-4 sm:px-6">
+        <main className="lexia-main mx-auto max-w-7xl px-4 sm:px-6">
           <Outlet />
         </main>
         <SiteFooter />
-      </div>
+      </div><Toaster /></AuthProvider>
     </QueryClientProvider>
   );
 }

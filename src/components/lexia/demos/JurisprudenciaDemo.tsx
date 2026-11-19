@@ -1,4 +1,6 @@
 import { useState } from "react";
+import { Link } from "@tanstack/react-router";
+import { Button } from "@/components/ui/button";
 import { Gavel } from "lucide-react";
 import { FALLOS } from "@/lib/lexia-data";
 import { DemoCard, SourceLink } from "../shared";
@@ -85,14 +87,15 @@ export function JurisprudenciaDemo() {
         )}
       </div>
       <div className="mt-4 rounded-xl bg-tint-blue p-4">
-        <p className="font-bold">Chat Kai — simulado</p>
+        <p className="font-bold">Lexia — consulta sobre los extractos de demostración</p>
         <div className="mt-2 flex flex-col gap-2 sm:flex-row sm:items-end">
           <input value={pregunta} onChange={(e) => setPregunta(e.target.value)} placeholder="Pregunta sobre un caso…" />
           <button type="button" className="btn btn-navy" onClick={preguntar}>
-            Preguntar a Kai
+            Consultar extracto
           </button>
         </div>
         {respuesta && <p className="small mt-3 rounded-lg border bg-card p-3">{respuesta}</p>}
+        <Button asChild className="mt-3"><Link to="/asistente">Investigar con Lexia en fuentes oficiales</Link></Button>
         <p className="small mt-2">
           Consejo: pide sin datos identificatorios. Ejemplo: “fallo sobre despido sin causa, sin nombres ni cédulas”.
         </p>

@@ -109,7 +109,7 @@ export function ContratosDemo() {
         <p className="small mt-2 leading-relaxed">
           Entre <b>{parteA}</b> y <b>{parteB}</b>, se acuerda un contrato de tipo <b>{tipo}</b>, por plazo{" "}
           <b>{plazo}</b>, con contraprestación mensual de <b>{formatGs(monto)}</b>. Se rige por la Ley N° 213/93 y/o la
-          Ley N° 6380/19, según el tipo elegido.
+          Ley N° 1183/85 (Código Civil), según el tipo elegido. La Ley N° 6380/19 corresponde a obligaciones tributarias.
         </p>
         <ul className="small mt-2 space-y-1">
           {clausulas.map((c) => (

@@ -6,7 +6,7 @@ const SITES = ["www.lexiapy.com", "docs.lexiapy.com", "honorarios.lexiapy.com", 
 export function SiteFooter() {
   return (
     <div className="mx-auto max-w-7xl px-4 pb-10 sm:px-6">
-      <footer className="mt-16 rounded-3xl bg-navy p-5 text-navy-foreground sm:p-8">
+      <footer className="mt-12 border-t bg-navy p-5 text-navy-foreground sm:p-8">
         <div className="grid gap-6 md:grid-cols-4">
           <div>
             <p className="font-display text-2xl font-bold">LEX IA PY</p>
@@ -54,7 +54,7 @@ export function SiteFooter() {
         </div>
         <div className="mt-6 flex flex-col justify-between gap-2 border-t border-navy-foreground/15 pt-4 sm:flex-row">
           <p className="small opacity-75">© LEX IA PY — Supervisión humana primero.</p>
-          <p className="small opacity-75">Ley N° 7593/2025 • Ley N° 1376/88 • Ley N° 213/93 • Ley N° 6380/19</p>
+          <p className="small opacity-75">Ley N° 7593/2025 • Ley N° 1376/88 • Ley N° 213/93 • Ley N° 1183/85 • Ley N° 6380/19</p>
         </div>
       </footer>
     </div>

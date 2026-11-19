@@ -51,7 +51,7 @@ function Precios() {
           <ul className="small mt-4 flex-1 space-y-2">
             {[
               "Búsqueda semántica, híbrida y exacta",
-              "Chat Kai con fuente trazable",
+              "Chat Lexia con fuente trazable",
               "Visor PDF y “Contar el caso”",
               "Filtros por sala, año y magistrado",
             ].map((g) => (

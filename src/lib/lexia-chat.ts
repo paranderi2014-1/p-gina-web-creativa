@@ -10,7 +10,7 @@ export function isOfficialUrl(value: string) {
 }
 export const chatPartsSchema = z.array(z.union([
   z.object({ type: z.literal("text"), text: z.string() }),
-  z.object({ type: z.literal("source-url"), sourceId: z.string(), url: z.string(), title: z.string().optional() }),
+  z.object({ type: z.literal("source-url"), sourceId: z.string(), url: z.string(), title: z.string().default("Fuente oficial") }),
   z.object({ type: z.literal("dynamic-tool"), toolName: z.string(), toolCallId: z.string(), state: z.literal("input-available"), input: z.object({ fuentes: z.array(z.string()) }) }),
   z.object({ type: z.literal("dynamic-tool"), toolName: z.string(), toolCallId: z.string(), state: z.literal("output-available"), input: z.object({ fuentes: z.array(z.string()) }), output: z.object({ fuentes: z.array(z.string()) }) }),
   z.object({ type: z.literal("dynamic-tool"), toolName: z.string(), toolCallId: z.string(), state: z.literal("output-error"), input: z.object({ fuentes: z.array(z.string()) }), errorText: z.string() }),

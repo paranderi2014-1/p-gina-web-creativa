@@ -7,7 +7,7 @@ export const Route = createFileRoute("/jurisprudencia")({
   head: () =>
     pageHead(
       "Jurisprudencia CSJ con fuente trazable — LEX IA PY",
-      "Busca fallos de la Corte Suprema de Justicia por sala, materia y magistrado, y consulta a Chat Kai con la fuente citada.",
+      "Busca fallos de la Corte Suprema de Justicia por sala, materia y magistrado, y consulta a Lexia con investigación oficial y fuentes citadas.",
     ),
   component: Jurisprudencia,
 });

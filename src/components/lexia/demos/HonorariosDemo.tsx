@@ -36,7 +36,7 @@ export function HonorariosDemo() {
 
   return (
     <DemoCard
-      title="Calculadora de Honorarios en vivo"
+      title="Honorarios LEX IA — calculadora en vivo"
       icon={<Calculator size={20} className="text-gold" />}
       aside={<span className="chip">Jornal vigente: {formatGs(JORNAL_MINIMO)} • Res. MTESS N° 670/2026</span>}
     >
