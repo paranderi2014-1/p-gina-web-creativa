@@ -8,6 +8,13 @@
       "when": 1794704306232,
       "tag": "0000_lexia_conversations",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1795139612043,
+      "tag": "0001_legal_library_and_case_workspace",
+      "breakpoints": true
     }
   ]
 }

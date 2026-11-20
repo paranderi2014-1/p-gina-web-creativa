@@ -14,6 +14,149 @@ export type Database = {
   }
   public: {
     Tables: {
+      case_entries: {
+        Row: {
+          body: string
+          case_id: string
+          created_at: string
+          done: boolean
+          due_date: string | null
+          file_path: string | null
+          id: string
+          kind: string
+          official_url: string
+          title: string
+        }
+        Insert: {
+          body?: string
+          case_id: string
+          created_at?: string
+          done?: boolean
+          due_date?: string | null
+          file_path?: string | null
+          id?: string
+          kind: string
+          official_url?: string
+          title: string
+        }
+        Update: {
+          body?: string
+          case_id?: string
+          created_at?: string
+          done?: boolean
+          due_date?: string | null
+          file_path?: string | null
+          id?: string
+          kind?: string
+          official_url?: string
+          title?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "case_entries_case_id_fkey"
+            columns: ["case_id"]
+            isOneToOne: false
+            referencedRelation: "legal_cases"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      legal_cases: {
+        Row: {
+          court: string
+          created_at: string
+          district: string
+          id: string
+          jurisdiction: string
+          number: string
+          official_url: string
+          people: string
+          risk: string
+          status: string
+          summary: string
+          title: string
+          user_id: string
+        }
+        Insert: {
+          court?: string
+          created_at?: string
+          district?: string
+          id?: string
+          jurisdiction?: string
+          number?: string
+          official_url?: string
+          people?: string
+          risk?: string
+          status?: string
+          summary?: string
+          title: string
+          user_id: string
+        }
+        Update: {
+          court?: string
+          created_at?: string
+          district?: string
+          id?: string
+          jurisdiction?: string
+          number?: string
+          official_url?: string
+          people?: string
+          risk?: string
+          status?: string
+          summary?: string
+          title?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      legal_library: {
+        Row: {
+          chamber: string
+          content: string
+          created_at: string
+          created_by: string
+          decision_date: string | null
+          id: string
+          kind: string
+          official_url: string
+          published: boolean
+          reference: string
+          reviewed_at: string
+          subject: string
+          title: string
+        }
+        Insert: {
+          chamber?: string
+          content?: string
+          created_at?: string
+          created_by: string
+          decision_date?: string | null
+          id?: string
+          kind: string
+          official_url: string
+          published?: boolean
+          reference?: string
+          reviewed_at?: string
+          subject?: string
+          title: string
+        }
+        Update: {
+          chamber?: string
+          content?: string
+          created_at?: string
+          created_by?: string
+          decision_date?: string | null
+          id?: string
+          kind?: string
+          official_url?: string
+          published?: boolean
+          reference?: string
+          reviewed_at?: string
+          subject?: string
+          title?: string
+        }
+        Relationships: []
+      }
       lexia_messages: {
         Row: {
           created_at: string
@@ -67,15 +210,39 @@ export type Database = {
         }
         Relationships: []
       }
+      user_roles: {
+        Row: {
+          id: string
+          role: Database["public"]["Enums"]["app_role"]
+          user_id: string
+        }
+        Insert: {
+          id?: string
+          role: Database["public"]["Enums"]["app_role"]
+          user_id: string
+        }
+        Update: {
+          id?: string
+          role?: Database["public"]["Enums"]["app_role"]
+          user_id?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      has_role: {
+        Args: {
+          _role: Database["public"]["Enums"]["app_role"]
+          _user_id: string
+        }
+        Returns: boolean
+      }
     }
     Enums: {
-      [_ in never]: never
+      app_role: "admin" | "user"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -202,6 +369,8 @@ export type CompositeTypes<
 
 export const Constants = {
   public: {
-    Enums: {},
+    Enums: {
+      app_role: ["admin", "user"],
+    },
   },
 } as const

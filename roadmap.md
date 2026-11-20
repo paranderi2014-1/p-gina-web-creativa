@@ -1,5 +1,6 @@
-# Adaptación LEX IA PY
-- [x] Adaptar navegación lateral del HTML, conservar 12 módulos y todos los servicios adicionales.
-- [x] Chat principal Lexia: investigación oficial, cuentas y conversaciones independientes guardadas.
-- [x] Integrar honorarios en Inicio y corregir referencias legales evidentes.
-- [x] Verificar conversaciones, cálculo y pantallas móvil/escritorio.
+# Actualización jurídica y servicios LEX IA PY
+- [ ] Panel administrador: leyes, fallos y fuentes revisadas; asignación segura de acceso.
+- [ ] Lexia consulta material publicado y buscador de fallos reales de la CSJ.
+- [ ] Expedientes privados: casos, actuaciones, tareas, archivos y vínculos oficiales.
+- [ ] Voz bidireccional con investigación jurídica delegada y controles de llamada.
+- [ ] Verificación de permisos, persistencia, búsqueda, voz y celular.
