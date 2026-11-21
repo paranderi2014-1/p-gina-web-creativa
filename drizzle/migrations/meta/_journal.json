@@ -15,6 +15,13 @@
       "when": 1795139612043,
       "tag": "0001_legal_library_and_case_workspace",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1795222541746,
+      "tag": "0002_case_file_access",
+      "breakpoints": true
     }
   ]
 }

@@ -1,123 +1,13 @@
-import { useState } from "react";
-import { Link } from "@tanstack/react-router";
-import { Button } from "@/components/ui/button";
-import { Gavel } from "lucide-react";
-import { FALLOS } from "@/lib/lexia-data";
-import { DemoCard, SourceLink } from "../shared";
-
-export function JurisprudenciaDemo() {
-  const [q, setQ] = useState("");
-  const [sala, setSala] = useState("Todas");
-  const [materia, setMateria] = useState("Todas");
-  const [pregunta, setPregunta] = useState("");
-  const [respuesta, setRespuesta] = useState("");
-
-  const resultados = FALLOS.filter(
-    (f) =>
-      (sala === "Todas" || f.sala === sala) &&
-      (materia === "Todas" || f.materia.startsWith(materia)) &&
-      (q === "" || (f.extracto + f.n + f.magistrado).toLowerCase().includes(q.toLowerCase())),
-  );
-
-  const preguntar = () => {
-    const consulta = pregunta || q;
-    if (!consulta) {
-      setRespuesta(
-        "Escribe una pregunta, por ejemplo: ¿cuándo hay despido sin causa justificada? Luego revisa el fallo completo en la fuente oficial.",
-      );
-      return;
-    }
-    const top = resultados[0];
-    setRespuesta(
-      top
-        ? `Según ${top.n} (${top.sala}), el criterio visible es el del extracto mostrado. Esta respuesta cita la fuente y no reemplaza la lectura del fallo completo. Consulta: “${consulta}”.`
-        : "No encontré jurisprudencia sobre esto en la base de demostración. Prefiero decirlo antes que inventar una respuesta: consulta la base completa en CSJ Jurisprudencia.",
-    );
-  };
-
-  return (
-    <DemoCard title="Buscador de Jurisprudencia" icon={<Gavel size={20} className="text-gold" />}>
-      <div className="mt-4 grid gap-3 sm:grid-cols-3">
-        <label className="field">
-          Buscar
-          <input
-            value={q}
-            onChange={(e) => setQ(e.target.value)}
-            placeholder="Ej.: despido, prescripción, amparo"
-          />
-        </label>
-        <label className="field">
-          Sala
-          <select value={sala} onChange={(e) => setSala(e.target.value)}>
-            <option>Todas</option>
-            <option>Sala Civil</option>
-            <option>Sala Penal</option>
-            <option>Sala Constitucional</option>
-          </select>
-        </label>
-        <label className="field">
-          Materia
-          <select value={materia} onChange={(e) => setMateria(e.target.value)}>
-            <option>Todas</option>
-            <option>Civil</option>
-            <option>Penal</option>
-            <option>Constitucional</option>
-            <option>Laboral</option>
-          </select>
-        </label>
-      </div>
-      <p className="small mt-3 text-muted-foreground">
-        {resultados.length} fallos encontrados de {FALLOS.length} en la base de demostración. Base
-        completa: CSJ Jurisprudencia desde 1995.
-      </p>
-      <div className="mt-3 grid gap-3 md:grid-cols-2">
-        {resultados.map((f) => (
-          <article key={f.n} className="rounded-xl border p-4">
-            <p className="font-extrabold text-link">{f.n}</p>
-            <p className="small text-muted-foreground">
-              {f.fecha} • {f.sala} • {f.magistrado} • {f.materia}
-            </p>
-            <p className="small mt-2 leading-relaxed">{f.extracto}</p>
-            <button
-              type="button"
-              className="mt-3 text-sm font-bold text-link"
-              onClick={() => setPregunta(f.extracto)}
-            >
-              Contar el caso →
-            </button>
-          </article>
-        ))}
-        {resultados.length === 0 && (
-          <p className="small rounded-xl bg-tint-warm p-4 md:col-span-2">
-            No encontré un fallo exacto con ese filtro. Ajusta la búsqueda o consulta la base
-            completa en la fuente oficial.
-          </p>
-        )}
-      </div>
-      <div className="mt-4 rounded-xl bg-tint-blue p-4">
-        <p className="font-bold">Lexia — consulta sobre los extractos de demostración</p>
-        <div className="mt-2 flex flex-col gap-2 sm:flex-row sm:items-end">
-          <input
-            value={pregunta}
-            onChange={(e) => setPregunta(e.target.value)}
-            placeholder="Pregunta sobre un caso…"
-          />
-          <button type="button" className="btn btn-navy" onClick={preguntar}>
-            Consultar extracto
-          </button>
-        </div>
-        {respuesta && <p className="small mt-3 rounded-lg border bg-card p-3">{respuesta}</p>}
-        <Button asChild className="mt-3">
-          <Link to="/asistente">Investigar con Lexia en fuentes oficiales</Link>
-        </Button>
-        <p className="small mt-2">
-          Consejo: pide sin datos identificatorios. Ejemplo: “fallo sobre despido sin causa, sin
-          nombres ni cédulas”.
-        </p>
-      </div>
-      <div className="mt-3">
-        <SourceLink idx={6} label="Ver en CSJ Jurisprudencia" />
-      </div>
-    </DemoCard>
-  );
+import {useState} from 'react';
+import {Link} from '@tanstack/react-router';
+import {useSuspenseQuery} from '@tanstack/react-query';
+import {useServerFn} from '@tanstack/react-start';
+import {Gavel,Search,ExternalLink,ChevronLeft,ChevronRight,FileText} from 'lucide-react';
+import {Button} from '@/components/ui/button';
+import {csjSearchSchema} from '@/lib/lexia-legal';
+import {csjOptions,getCsjDetail} from '@/lib/lexia-legal.functions';
+import {DemoCard,SourceLink} from '../shared';
+export function JurisprudenciaDemo(){
+ const[filters,setFilters]=useState(csjSearchSchema.parse({}));const[applied,setApplied]=useState(csjSearchSchema.parse({}));const{data,isFetching}=useSuspenseQuery(csjOptions(applied));const[detail,setDetail]=useState<{text:string,url:string}|null>(null);const[detailError,setDetailError]=useState('');const[loading,setLoading]=useState<number|null>(null);const read=useServerFn(getCsjDetail);
+ return <DemoCard title="Jurisprudencia oficial LEX IA" icon={<Gavel size={20} className="text-gold"/>}><form className="mt-4" onSubmit={e=>{e.preventDefault();setDetail(null);setApplied(csjSearchSchema.parse({...filters,page:0}));}}><div className="grid gap-3 sm:grid-cols-3"><label className="field">Buscar palabras<input aria-label="Buscar fallos oficiales" value={filters.q} maxLength={300} onChange={e=>setFilters({...filters,q:e.target.value})} placeholder="Ej.: honorarios, prescripción, amparo"/></label><label className="field">Sala<select value={filters.sala} onChange={e=>setFilters({...filters,sala:e.target.value})}><option value="">Todas</option><option>SALA CIVIL</option><option>SALA PENAL</option><option>SALA CONSTITUCIONAL</option><option>PLENO DE LA CORTE SUPREMA DE JUSTICIA</option></select></label><label className="field">Materia<select value={filters.materia} onChange={e=>setFilters({...filters,materia:e.target.value})}><option value="">Todas</option>{['Civil y Comercial','Penal','Constitucional','Laboral','Administrativa','Niñez y Adolescencia'].map(m=><option key={m}>{m}</option>)}</select></label></div><div className="mt-3 flex flex-wrap items-end gap-3"><label className="field min-w-0 flex-1">Número de resolución<input inputMode="numeric" pattern="[0-9]{0,8}" value={filters.number} onChange={e=>setFilters({...filters,number:e.target.value})}/></label><label className="field min-w-0 flex-1">Año<input inputMode="numeric" pattern="[0-9]{4}|" value={filters.year} onChange={e=>setFilters({...filters,year:e.target.value})}/></label><Button type="submit" disabled={isFetching}><Search size={16}/>{isFetching?'Consultando…':'Buscar en CSJ'}</Button></div></form>{data.error&&<p role="alert" className="mt-4 border-l-2 border-destructive pl-3 text-sm text-destructive">{data.error}</p>}<p role="status" className="mt-4 text-xs text-muted-foreground">{isFetching?'Consultando la fuente oficial…':`${data.total.toLocaleString('es-PY')} resultados en CSJ · Consulta ${new Date(data.checkedAt).toLocaleDateString('es-PY')}`}</p><div className="mt-4 grid gap-3 md:grid-cols-2">{data.rows.map(f=><article key={f.id} className="min-w-0 rounded-md border bg-card p-4"><p className="text-xs font-bold uppercase text-kicker">{f.reference} · {f.date}</p><h3 className="mt-2 break-words text-sm font-bold leading-relaxed">{f.title}</h3><p className="mt-2 text-xs text-muted-foreground">{f.chamber} · {f.subject}</p><p className="mt-3 text-xs leading-relaxed">{f.legal||'Referencias legales no informadas en la ficha; revisar el texto completo.'}</p><div className="mt-4 flex flex-wrap gap-3"><a className="flex items-center gap-1 text-xs font-bold text-link underline" href={f.url} target="_blank" rel="noopener noreferrer">Ficha CSJ <ExternalLink size={12}/></a>{f.pdf&&<a className="flex items-center gap-1 text-xs font-bold text-link underline" href={f.pdf} target="_blank" rel="noopener noreferrer">PDF oficial <FileText size={12}/></a>}<Button variant="outline" size="sm" disabled={loading!==null} onClick={async()=>{setLoading(f.id);setDetailError('');try{setDetail(await read({data:{code:f.id}}));}catch{setDetailError('No se pudo leer la ficha. Consultá el enlace oficial.');}finally{setLoading(null);}}}>{loading===f.id?'Leyendo…':'Ver ficha'}</Button></div></article>)}</div>{!data.rows.length&&!data.error&&<p className="mt-5 text-sm text-muted-foreground">No se encontraron fallos con estos criterios.</p>}<div className="mt-5 flex items-center justify-between"><Button size="icon" variant="outline" aria-label="Página anterior" disabled={applied.page===0||isFetching} onClick={()=>setApplied({...applied,page:applied.page-1})}><ChevronLeft/></Button><p className="text-xs">Página {applied.page+1}</p><Button size="icon" variant="outline" aria-label="Página siguiente" disabled={(applied.page+1)*10>=data.total||isFetching} onClick={()=>setApplied({...applied,page:applied.page+1})}><ChevronRight/></Button></div>{detailError&&<p role="alert" className="mt-4 text-destructive">{detailError}</p>}{detail&&<section className="mt-6 border-t pt-5"><h3 className="font-bold">Ficha publicada por la CSJ</h3><p className="mt-3 max-h-96 overflow-y-auto whitespace-pre-wrap text-sm leading-relaxed">{detail.text}</p><a href={detail.url} target="_blank" rel="noopener noreferrer" className="mt-3 block text-xs text-link underline">Ver ficha original</a></section>}<div className="mt-6 flex flex-wrap items-center gap-4 border-t pt-5"><Button asChild variant="outline"><Link to="/asistente">Investigar o contar el caso con Lexia</Link></Button><SourceLink idx={6} label="CSJ Jurisprudencia"/></div></DemoCard>;
 }

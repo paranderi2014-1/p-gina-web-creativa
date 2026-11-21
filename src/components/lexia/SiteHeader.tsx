@@ -21,6 +21,7 @@ import {
   ExternalLink,
   LogOut,
   Grid2X2,
+  ShieldCheck,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useLexiaAuth } from "./AuthProvider";
@@ -44,6 +45,7 @@ export const NAV = [
   { to: "/precios", label: "Planes y precios", icon: CreditCard },
   { to: "/fuentes", label: "Fuentes oficiales", icon: ExternalLink },
   { to: "/contacto", label: "Contacto LEX IA", icon: Mail },
+  { to: "/admin", label: "Administración LEX IA", icon: ShieldCheck },
 ] as const;
 export function SiteHeader() {
   const [open, setOpen] = useState(false);

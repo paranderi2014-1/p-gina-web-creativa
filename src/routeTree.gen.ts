@@ -29,6 +29,7 @@ import { Route as ModulosRouteImport } from './routes/modulos'
 import { Route as PreciosRouteImport } from './routes/precios'
 import { Route as ResetPasswordRouteImport } from './routes/reset-password'
 import { Route as VigilanciaRouteImport } from './routes/vigilancia'
+import { Route as AuthenticatedAdminRouteImport } from './routes/_authenticated/admin'
 import { Route as ApiLexiaRouteImport } from './routes/api/lexia'
 import { Route as AsistenteIndexRouteImport } from './routes/asistente.index'
 import { Route as AuthenticatedAsistenteThreadIdRouteImport } from './routes/_authenticated/asistente.$threadId'
@@ -132,6 +133,11 @@ const VigilanciaRoute = VigilanciaRouteImport.update({
   path: '/vigilancia',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AuthenticatedAdminRoute = AuthenticatedAdminRouteImport.update({
+  id: '/admin',
+  path: '/admin',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
 const ApiLexiaRoute = ApiLexiaRouteImport.update({
   id: '/api/lexia',
   path: '/api/lexia',
@@ -169,6 +175,7 @@ export interface FileRoutesByFullPath {
   '/precios': typeof PreciosRoute
   '/reset-password': typeof ResetPasswordRoute
   '/vigilancia': typeof VigilanciaRoute
+  '/admin': typeof AuthenticatedAdminRoute
   '/api/lexia': typeof ApiLexiaRoute
   '/asistente/': typeof AsistenteIndexRoute
   '/asistente/$threadId': typeof AuthenticatedAsistenteThreadIdRoute
@@ -192,6 +199,7 @@ export interface FileRoutesByTo {
   '/precios': typeof PreciosRoute
   '/reset-password': typeof ResetPasswordRoute
   '/vigilancia': typeof VigilanciaRoute
+  '/admin': typeof AuthenticatedAdminRoute
   '/api/lexia': typeof ApiLexiaRoute
   '/asistente': typeof AsistenteIndexRoute
   '/asistente/$threadId': typeof AuthenticatedAsistenteThreadIdRoute
@@ -218,6 +226,7 @@ export interface FileRoutesById {
   '/precios': typeof PreciosRoute
   '/reset-password': typeof ResetPasswordRoute
   '/vigilancia': typeof VigilanciaRoute
+  '/_authenticated/admin': typeof AuthenticatedAdminRoute
   '/api/lexia': typeof ApiLexiaRoute
   '/asistente/': typeof AsistenteIndexRoute
   '/_authenticated/asistente/$threadId': typeof AuthenticatedAsistenteThreadIdRoute
@@ -244,6 +253,7 @@ export interface FileRouteTypes {
     | '/precios'
     | '/reset-password'
     | '/vigilancia'
+    | '/admin'
     | '/api/lexia'
     | '/asistente/'
     | '/asistente/$threadId'
@@ -267,6 +277,7 @@ export interface FileRouteTypes {
     | '/precios'
     | '/reset-password'
     | '/vigilancia'
+    | '/admin'
     | '/api/lexia'
     | '/asistente'
     | '/asistente/$threadId'
@@ -292,6 +303,7 @@ export interface FileRouteTypes {
     | '/precios'
     | '/reset-password'
     | '/vigilancia'
+    | '/_authenticated/admin'
     | '/api/lexia'
     | '/asistente/'
     | '/_authenticated/asistente/$threadId'
@@ -463,6 +475,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof VigilanciaRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/_authenticated/admin': {
+      id: '/_authenticated/admin'
+      path: '/admin'
+      fullPath: '/admin'
+      preLoaderRoute: typeof AuthenticatedAdminRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
     '/api/lexia': {
       id: '/api/lexia'
       path: '/api/lexia'
@@ -488,10 +507,12 @@ declare module '@tanstack/react-router' {
 }
 
 interface AuthenticatedRouteRouteChildren {
+  AuthenticatedAdminRoute: typeof AuthenticatedAdminRoute
   AuthenticatedAsistenteThreadIdRoute: typeof AuthenticatedAsistenteThreadIdRoute
 }
 
 const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
+  AuthenticatedAdminRoute: AuthenticatedAdminRoute,
   AuthenticatedAsistenteThreadIdRoute: AuthenticatedAsistenteThreadIdRoute,
 }
 

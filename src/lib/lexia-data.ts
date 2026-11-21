@@ -321,80 +321,8 @@ export interface Fallo {
   extracto: string;
 }
 
-export const FALLOS: Fallo[] = [
-  {
-    n: "A. y S. N° 124/2024",
-    fecha: "14/03/2024",
-    sala: "Sala Civil",
-    magistrado: "Dra. Carolina Benítez",
-    materia: "Civil — Daños",
-    extracto:
-      "Responsabilidad por incumplimiento contractual: el tribunal confirmó la indemnización y precisó el alcance del daño moral cuando existe prueba documental del perjuicio.",
-  },
-  {
-    n: "A. y S. N° 87/2023",
-    fecha: "02/08/2023",
-    sala: "Sala Penal",
-    magistrado: "Dr. Miguel Ángel Torres",
-    materia: "Penal — Prescripción",
-    extracto:
-      "Se analizó el cómputo de la prescripción y la interrupción por actos procesales, con criterio restrictivo frente a la persecución penal.",
-  },
-  {
-    n: "A. y S. N° 210/2024",
-    fecha: "21/05/2024",
-    sala: "Sala Constitucional",
-    magistrado: "Dra. Laura Fernández",
-    materia: "Constitucional — Amparo",
-    extracto:
-      "Amparo por acceso a información pública: se recordó el deber de respuesta fundada y en plazo, sin exigir requisitos no previstos en la ley.",
-  },
-  {
-    n: "A. y S. N° 45/2025",
-    fecha: "18/02/2025",
-    sala: "Sala Civil",
-    magistrado: "Dr. Andrés Duarte",
-    materia: "Laboral — Despido",
-    extracto:
-      "Despido sin causa justificada: se confirmó la indemnización y se aplicaron los Arts. 84 y 218 del Código del Trabajo para el cálculo de la antigüedad.",
-  },
-  {
-    n: "A. y S. N° 312/2023",
-    fecha: "09/11/2023",
-    sala: "Sala Civil",
-    magistrado: "Dra. Sofía Ramírez",
-    materia: "Civil — Contratos",
-    extracto:
-      "Interpretación de cláusula de plazo y mora: prevaleció la voluntad común de las partes y la buena fe en la ejecución del contrato.",
-  },
-  {
-    n: "A. y S. N° 158/2024",
-    fecha: "30/07/2024",
-    sala: "Sala Penal",
-    magistrado: "Dr. Jorge Aquino",
-    materia: "Penal — Medidas",
-    extracto:
-      "Medidas cautelares: proporcionalidad y revisión periódica. La prisión preventiva es excepcional y debe fundarse en riesgo procesal concreto.",
-  },
-  {
-    n: "A. y S. N° 96/2025",
-    fecha: "11/04/2025",
-    sala: "Sala Constitucional",
-    magistrado: "Dra. Elena Vargas",
-    materia: "Constitucional — Hábeas Data",
-    extracto:
-      "Protección de datos personales: se ordenó la actualización de un registro inexacto y se recordó el principio de finalidad. Ley N° 7593/2025.",
-  },
-  {
-    n: "A. y S. N° 273/2023",
-    fecha: "27/09/2023",
-    sala: "Sala Civil",
-    magistrado: "Dr. Pablo Mendoza",
-    materia: "Civil — Ejecutivo",
-    extracto:
-      "Juicio ejecutivo: título hábil, excepción de pago parcialmente acreditada y liquidación ajustada a los Arts. 459 a 466 del Código Procesal Civil.",
-  },
-];
+// Case results are retrieved from the official CSJ search, never synthesized.
+export const FALLOS: Fallo[] = [];
 
 export const DOCUMENTOS = [
   {
